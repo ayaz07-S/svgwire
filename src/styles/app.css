@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/* ─── DESIGN.MD Token System ─── */
+@theme {
+  /* Reset defaults we don't need */
+  --color-*: initial;
+  --font-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  /* ─── Colors: Brand & Surface ─── */
+  --color-ink: #171717;
+  --color-body: #4d4d4d;
+  --color-mute: #888888;
+  --color-hairline: #ebebeb;
+  --color-hairline-strong: #a1a1a1;
+  --color-canvas: #ffffff;
+  --color-canvas-soft: #fafafa;
+  --color-canvas-soft-2: #f5f5f5;
+  --color-on-primary: #ffffff;
+
+  /* ─── Colors: Semantic ─── */
+  --color-link: #0070f3;
+  --color-link-deep: #0761d1;
+  --color-link-bg-soft: #d3e5ff;
+  --color-success: #0070f3;
+  --color-error: #ee0000;
+  --color-error-soft: #f7d4d6;
+  --color-error-deep: #c50000;
+  --color-warning: #f5a623;
+  --color-warning-soft: #ffefcf;
+  --color-warning-deep: #ab570a;
+
+  /* ─── Colors: Brand Accent ─── */
+  --color-violet: #7928ca;
+  --color-violet-soft: #d8ccf1;
+  --color-violet-deep: #4c2889;
+  --color-cyan: #50e3c2;
+  --color-cyan-soft: #aaffec;
+  --color-cyan-deep: #29bc9b;
+  --color-highlight-pink: #ff0080;
+  --color-highlight-magenta: #eb367f;
+
+  /* ─── Colors: Gradient Pairs ─── */
+  --color-grad-develop-start: #007cf0;
+  --color-grad-develop-end: #00dfd8;
+  --color-grad-preview-start: #7928ca;
+  --color-grad-preview-end: #ff0080;
+  --color-grad-ship-start: #ff4d4d;
+  --color-grad-ship-end: #f9cb28;
+
+  /* ─── Typography ─── */
+  --font-sans: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* ─── Border Radius ─── */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill-sm: 64px;
+  --radius-pill: 100px;
+  --radius-full: 9999px;
+
+  /* ─── Shadows (stacked, brand-specific) ─── */
+  --shadow-level-1: inset 0 0 0 1px #00000014;
+  --shadow-level-2: 0px 1px 1px #00000005, 0px 2px 2px #0000000a, inset 0 0 0 1px #00000014;
+  --shadow-level-3: 0px 2px 2px #0000000a, 0px 8px 8px -8px #0000000a, inset 0 0 0 1px #00000014;
+  --shadow-level-4: 0px 2px 2px #0000000a, 0px 8px 16px -4px #0000000a, inset 0 0 0 1px #00000014;
+  --shadow-level-5: 0px 1px 1px #00000005, 0px 8px 16px -4px #0000000a, 0px 24px 32px -8px #0000000f, inset 0 0 0 1px #00000014;
+}
+
+/* ─── Base Styles ─── */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-canvas-soft);
+  color: var(--color-ink);
+}
+
+::selection {
+  background-color: var(--color-ink);
+  color: #f2f2f2;
+}
+
+/* ─── Custom Utilities ─── */
+@utility text-display-xl {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -2.4px;
+}
+
+@utility text-display-lg {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: -1.28px;
+}
+
+@utility text-display-md {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.96px;
+}
+
+@utility text-display-sm {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.6px;
+}
+
+@utility text-body-lg {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+@utility text-body-md {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@utility text-body-md-strong {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+@utility text-body-sm {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+}
+
+@utility text-body-sm-strong {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+}
+
+@utility text-caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+@utility text-caption-mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+@utility text-code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+@utility text-button-md {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+@utility text-button-lg {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}

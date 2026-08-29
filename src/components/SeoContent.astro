@@ -1,0 +1,95 @@
+---
+interface Props {
+  framework: string;
+}
+
+const { framework } = Astro.props;
+
+const seoBlocks: Record<string, { title: string; content: string }[]> = {
+  react: [
+    {
+      title: 'Why convert SVG to React components?',
+      content: 'Inline SVG in JSX gives you full CSS and JavaScript control over every path, fill, and stroke. Unlike <img> tags, React SVG components support dynamic props, theme-aware colors via currentColor, and tree-shaking — meaning unused icons never ship to your users. SVG2Component handles the tedious attribute mapping (stroke-width → strokeWidth, fill-rule → fillRule) automatically.',
+    },
+    {
+      title: 'TypeScript support built in.',
+      content: 'Every generated component includes full TypeScript types. Props extend React.SVGProps<SVGSVGElement>, giving you autocomplete for every SVG attribute in VS Code. Toggle TypeScript off to get clean JSX output for JavaScript projects.',
+    },
+    {
+      title: 'Zero latency. Zero backend.',
+      content: 'SVG2Component runs entirely in your browser using DOMParser — no files are uploaded, no API calls are made, and no data leaves your machine. Paste your SVG and get your component in under 1ms.',
+    },
+  ],
+  vue: [
+    {
+      title: 'Vue 3 SFC output with script setup.',
+      content: 'SVG2Component generates Vue 3 Single File Components using the modern <script setup> syntax. Each component includes defineOptions for component naming, v-bind="$attrs" for prop forwarding, and optional TypeScript support with defineProps<Props>().',
+    },
+    {
+      title: 'Keeps SVG attributes in kebab-case.',
+      content: 'Unlike React which requires camelCase, Vue templates use standard HTML attribute conventions. SVG2Component preserves the native kebab-case format (stroke-width, fill-rule) so your Vue components look natural and idiomatic.',
+    },
+    {
+      title: 'Tailwind CSS compatible.',
+      content: 'Enable currentColor mode to replace hardcoded fill and stroke colors with currentColor. This lets you control icon colors with Tailwind\'s text-* utilities (text-blue-500, text-gray-900) — no style prop overrides needed.',
+    },
+  ],
+  svelte: [
+    {
+      title: 'Svelte 5 runes syntax.',
+      content: 'SVG2Component generates Svelte 5 components using the new $props() runes syntax. Rest props are spread with {...restProps}, and class is properly destructured from $props() for seamless Tailwind/CSS integration.',
+    },
+    {
+      title: 'Minimal bundle, maximum performance.',
+      content: 'Svelte compiles components away at build time — there\'s no virtual DOM overhead. Your SVG icons become zero-runtime components that ship as vanilla DOM operations. Combined with SVG2Component\'s client-side processing, your icon workflow has zero waste.',
+    },
+    {
+      title: 'Works with SvelteKit.',
+      content: 'Generated components drop directly into your $lib/icons/ directory. Import them anywhere in your SvelteKit app with full TypeScript support and automatic prop type inference.',
+    },
+  ],
+  'react-native': [
+    {
+      title: 'React Native SVG with proper imports.',
+      content: 'SVG2Component maps standard SVG elements to their react-native-svg equivalents: <path> becomes <Path>, <circle> becomes <Circle>, <g> becomes <G>. Import statements are automatically generated based on which elements your SVG uses.',
+    },
+    {
+      title: 'NativeWind support.',
+      content: 'Enable the NativeWind toggle to wrap your component with styled() from nativewind. This lets you apply Tailwind CSS utility classes to your SVG icons in React Native — className="text-blue-500 w-6 h-6" just works.',
+    },
+    {
+      title: 'Size and color props.',
+      content: 'Every generated React Native component accepts size (number) and color (string) props with sensible defaults. The size prop maps to both width and height simultaneously, and color flows through to fill/stroke via currentColor.',
+    },
+  ],
+  'tailwind-react': [
+    {
+      title: 'Built for Tailwind CSS projects.',
+      content: 'This converter pre-applies the three most common Tailwind optimizations: removes hardcoded width/height (use w-6 h-6 instead), replaces all colors with currentColor (use text-blue-500 instead), and adds a className prop for utility class composition.',
+    },
+    {
+      title: 'One-click icon system.',
+      content: 'The Tailwind React preset gives you icons that work like Heroicons or Lucide out of the box. Drop your custom SVGs through the converter and get components that follow the same API: <MyIcon className="w-5 h-5 text-gray-500" />.',
+    },
+    {
+      title: 'Design system ready.',
+      content: 'Generated components extend React.SVGProps, letting you spread any SVG attribute. Combined with currentColor and className forwarding, these icons integrate seamlessly into design systems built with Tailwind CSS.',
+    },
+  ],
+};
+
+const blocks = seoBlocks[framework] ?? seoBlocks.react;
+---
+
+<section class="border-t border-hairline bg-canvas" id="seo-content">
+  <div class="mx-auto max-w-[1400px] px-6 py-20">
+    <div class="grid gap-16 md:grid-cols-3">
+      {blocks.map((block) => (
+        <div>
+          <h2 class="text-display-sm text-ink mb-3">{block.title}</h2>
+          <p class="text-body-md text-body leading-relaxed">{block.content}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Converter } from '../components/converter/Converter';
+import SeoContent from '../components/SeoContent.astro';
+import { FRAMEWORKS, getFrameworkBySlug } from '../lib/frameworks';
+
+export function getStaticPaths() {
+  return FRAMEWORKS.map(fw => ({
+    params: { framework: fw.slug },
+    props: { frameworkId: fw.id },
+  }));
+}
+
+interface Props {
+  frameworkId: string;
+}
+
+const { frameworkId } = Astro.props;
+const fw = getFrameworkBySlug(Astro.params.framework!);
+---
+
+<BaseLayout title={fw.title} description={fw.description}>
+  <Converter client:load defaultFramework={frameworkId} />
+  <SeoContent framework={frameworkId} />
+</BaseLayout>

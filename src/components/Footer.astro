@@ -1,0 +1,61 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-hairline bg-canvas px-6 py-16">
+  <div class="mx-auto grid max-w-[1400px] gap-12 md:grid-cols-4">
+    <!-- Brand -->
+    <div class="md:col-span-1">
+      <div class="flex items-center gap-2 mb-3">
+        <div class="flex h-7 w-7 items-center justify-center rounded-md bg-ink">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <span class="text-body-sm-strong text-ink">SVG2Component</span>
+      </div>
+      <p class="text-body-sm text-mute">
+        Zero-latency, client-side SVG to component converter. No backend. No tracking. Just code.
+      </p>
+    </div>
+
+    <!-- Converters -->
+    <div>
+      <h3 class="text-caption-mono text-mute uppercase tracking-wider mb-4">Converters</h3>
+      <ul class="space-y-2.5">
+        <li><a href="/svg-to-react" class="text-body-sm text-body hover:text-ink transition-colors">SVG to React</a></li>
+        <li><a href="/svg-to-vue" class="text-body-sm text-body hover:text-ink transition-colors">SVG to Vue 3</a></li>
+        <li><a href="/svg-to-svelte" class="text-body-sm text-body hover:text-ink transition-colors">SVG to Svelte 5</a></li>
+        <li><a href="/svg-to-react-native" class="text-body-sm text-body hover:text-ink transition-colors">SVG to React Native</a></li>
+        <li><a href="/svg-to-tailwind-react" class="text-body-sm text-body hover:text-ink transition-colors">SVG to Tailwind React</a></li>
+      </ul>
+    </div>
+
+    <!-- Resources -->
+    <div>
+      <h3 class="text-caption-mono text-mute uppercase tracking-wider mb-4">Resources</h3>
+      <ul class="space-y-2.5">
+        <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-body-sm text-body hover:text-ink transition-colors">GitHub</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG" target="_blank" rel="noopener noreferrer" class="text-body-sm text-body hover:text-ink transition-colors">SVG Reference (MDN)</a></li>
+      </ul>
+    </div>
+
+    <!-- Tech -->
+    <div>
+      <h3 class="text-caption-mono text-mute uppercase tracking-wider mb-4">Built With</h3>
+      <ul class="space-y-2.5">
+        <li><span class="text-body-sm text-body">Astro</span></li>
+        <li><span class="text-body-sm text-body">React Islands</span></li>
+        <li><span class="text-body-sm text-body">Tailwind CSS v4</span></li>
+        <li><span class="text-body-sm text-body">Cloudflare Pages</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="mx-auto mt-12 max-w-[1400px] border-t border-hairline pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p class="text-caption text-mute">© {year} SVG2Component. All processing happens in your browser.</p>
+    <p class="text-caption text-mute">No data is ever sent to a server.</p>
+  </div>
+</footer>
