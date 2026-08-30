@@ -1,10 +1,12 @@
 import type { ConversionOptions } from '../../lib/templates/index';
-import { toPascalCase } from '../../lib/utils';
+import { toPascalCase, formatBytes } from '../../lib/utils';
 
 interface OptionsPanelProps {
   options: ConversionOptions;
   onChange: (key: keyof ConversionOptions, value: unknown) => void;
   framework: string;
+  originalSize?: number;
+  parsedSize?: number;
 }
 
 function Toggle({
@@ -45,7 +47,7 @@ function Toggle({
   );
 }
 
-export function OptionsPanel({ options, onChange, framework }: OptionsPanelProps) {
+export function OptionsPanel({ options, onChange, framework, originalSize, parsedSize }: OptionsPanelProps) {
   return (
     <div className="rounded-lg bg-canvas shadow-level-1 border border-hairline px-4 py-3">
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 flex-wrap">
@@ -62,6 +64,32 @@ export function OptionsPanel({ options, onChange, framework }: OptionsPanelProps
             className="h-7 rounded-sm border border-hairline bg-canvas px-2 text-body-sm text-ink outline-none focus:border-ink transition-colors duration-150 w-28"
             spellCheck={false}
           />
+        </div>
+
+        <div className="h-5 w-px bg-hairline hidden sm:block" />
+
+        {/* Precision Slider */}
+        <div className="flex items-center gap-3">
+          <label htmlFor="precision-slider" className="text-caption-mono text-mute whitespace-nowrap">
+            Precision: {options.precision}
+          </label>
+          <input
+            id="precision-slider"
+            type="range"
+            min="1"
+            max="6"
+            step="1"
+            value={options.precision ?? 3}
+            onChange={e => onChange('precision', parseInt(e.target.value, 10))}
+            className="w-24 accent-ink cursor-pointer"
+          />
+          {originalSize !== undefined && parsedSize !== undefined && originalSize > 0 && (
+            <span className="text-caption-mono text-success whitespace-nowrap">
+              {formatBytes(originalSize)} &rarr; {formatBytes(parsedSize)} ({(
+                ((parsedSize - originalSize) / originalSize) * 100
+              ).toFixed(1)}%)
+            </span>
+          )}
         </div>
 
         <div className="h-5 w-px bg-hairline hidden sm:block" />

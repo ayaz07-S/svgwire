@@ -1,15 +1,18 @@
 import { useCallback, useRef, useState } from 'react';
 import { Upload, FolderArchive, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import JSZip from 'jszip';
-import { scanFiles, readFileAsText, downloadBlob, toPascalCase } from '../../lib/utils';
+import { scanFiles, readFileAsText, downloadBlob, toPascalCase, sanitizeSpriteId } from '../../lib/utils';
 import { convert, type ConversionOptions } from '../../lib/templates/index';
+import { parseSvg } from '../../lib/engine/parser';
+import { generateSpriteWrapper } from '../../lib/templates/sprite';
 
 interface BatchPaneProps {
   options: ConversionOptions;
   frameworkSlug: string;
+  mode: 'batch' | 'sprite';
 }
 
-export function BatchPane({ options, frameworkSlug }: BatchPaneProps) {
+export function BatchPane({ options, frameworkSlug, mode }: BatchPaneProps) {
   const [isDragOver, setIsDragOver] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -28,32 +31,99 @@ export function BatchPane({ options, frameworkSlug }: BatchPaneProps) {
     const zip = new JSZip();
     const newLog: typeof processedLog = [];
     
-    for (let i = 0; i < allFiles.length; i++) {
-      const { file, path } = allFiles[i];
-      try {
-        const rawSvg = await readFileAsText(file);
+    if (mode === 'sprite') {
+      let spriteContent = '<svg xmlns="http://www.w3.org/2000/svg" style="display:none">\n';
+      const validIconNames: string[] = [];
+
+      for (let i = 0; i < allFiles.length; i++) {
+        let { file, path } = allFiles[i];
         
-        // Generate component name from filename without extension
-        const filenameNoExt = file.name.replace(/\.svg$/i, '');
-        const componentName = toPascalCase(filenameNoExt) || 'SvgIcon';
+        // Strip the dropped root directory segment from the path
+        if (path.includes('/')) {
+          const parts = path.split('/');
+          parts.shift(); // Remove the leading root directory
+          path = parts.join('/');
+        }
         
-        const fileOptions = { ...options, componentName };
-        const result = convert(rawSvg, fileOptions);
-        
-        if (result.parsed.isValid) {
-          // Replace .svg extension with the target framework extension
-          const outPath = path.replace(/\.svg$/i, result.extension);
-          zip.file(outPath, result.code);
-          newLog.push({ name: outPath, status: 'success' as const });
-        } else {
+        try {
+          const rawSvg = await readFileAsText(file);
+          const sanitizedId = sanitizeSpriteId(path);
+          const fileOptions = { componentName: toPascalCase(sanitizedId), precision: options.precision };
+          const parsed = parseSvg(rawSvg, fileOptions);
+          
+          if (parsed.isValid) {
+            // Preserve root presentation attributes on <symbol> (e.g. fill, stroke)
+            const excludeAttrs = new Set(['xmlns', 'xmlns:xlink', 'version', 'class', 'id', 'width', 'height', 'viewbox', 'viewBox']);
+            let symbolAttrs = `id="icon-${sanitizedId}" viewBox="${parsed.viewBox || '0 0 24 24'}"`;
+            
+            for (const [key, value] of Object.entries(parsed.attributes)) {
+              if (!excludeAttrs.has(key)) {
+                symbolAttrs += ` ${key}="${value}"`;
+              }
+            }
+            
+            spriteContent += `  <symbol ${symbolAttrs}>\n    ${parsed.innerHTML}\n  </symbol>\n`;
+            validIconNames.push(sanitizedId);
+            newLog.push({ name: `icon-${sanitizedId}`, status: 'success' as const });
+          } else {
+            newLog.push({ name: path, status: 'error' as const });
+          }
+        } catch (error) {
           newLog.push({ name: path, status: 'error' as const });
         }
-      } catch (error) {
-        newLog.push({ name: path, status: 'error' as const });
+        
+        setProgress(i + 1);
+        setProcessedLog([...newLog]);
       }
+
+      spriteContent += '</svg>';
       
-      setProgress(i + 1);
-      setProcessedLog([...newLog]);
+      if (validIconNames.length > 0) {
+        zip.file('sprite.svg', spriteContent);
+        
+        const typesContent = `export type IconName = ${validIconNames.map(n => `'${n}'`).join(' | ')};\n`;
+        zip.file('icon-names.ts', typesContent);
+        
+        const wrapper = generateSpriteWrapper(options.framework, options);
+        const componentName = options.componentName || 'Icon';
+        zip.file(`${componentName}${wrapper.extension}`, wrapper.code);
+      }
+    } else {
+      for (let i = 0; i < allFiles.length; i++) {
+        let { file, path } = allFiles[i];
+        
+        // Strip the dropped root directory segment from the path
+        if (path.includes('/')) {
+          const parts = path.split('/');
+          parts.shift(); // Remove the leading root directory
+          path = parts.join('/');
+        }
+        
+        try {
+          const rawSvg = await readFileAsText(file);
+          
+          // Generate component name from filename without extension
+          const filenameNoExt = path.replace(/\.svg$/i, '').split('/').pop() || 'SvgIcon';
+          const componentName = toPascalCase(filenameNoExt) || 'SvgIcon';
+          
+          const fileOptions = { ...options, componentName };
+          const result = convert(rawSvg, fileOptions);
+          
+          if (result.parsed.isValid) {
+            // Replace .svg extension with the target framework extension
+            const outPath = path.replace(/\.svg$/i, result.extension);
+            zip.file(outPath, result.code);
+            newLog.push({ name: outPath, status: 'success' as const });
+          } else {
+            newLog.push({ name: path, status: 'error' as const });
+          }
+        } catch (error) {
+          newLog.push({ name: path, status: 'error' as const });
+        }
+        
+        setProgress(i + 1);
+        setProcessedLog([...newLog]);
+      }
     }
 
     // Create ZIP file named after the requested convention: svg2component-[framework].zip

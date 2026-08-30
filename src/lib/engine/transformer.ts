@@ -133,14 +133,18 @@ export function transformInnerHtml(html: string, mode: TransformMode): string {
   // For JSX mode, we need to transform attributes in nested elements
   // Use regex to find all attribute names in tags
   return html.replace(
-    /(<\w+(?:\s+[a-zA-Z][a-zA-Z0-9:_-]*(?:="[^"]*")?)*)\s*/g,
-    (match) => {
-      return match.replace(
-        /\s([a-zA-Z][a-zA-Z0-9:_-]*)(?==)/g,
+    /<\w+(?:\s+[^>]+)?>/g,
+    (tagMatch) => {
+      return tagMatch.replace(
+        /\s+([a-zA-Z][a-zA-Z0-9:_-]*)(?:="[^"]*")?/g,
         (attrMatch, attrName) => {
           const transformed = transformAttrName(attrName, mode);
-          if (transformed === null) return ''; // skip attribute
-          return ` ${transformed}`;
+          if (transformed === null) return ''; // skip entire attribute (name and value)
+          
+          if (transformed === attrName) return attrMatch; // no change
+          
+          // Replace only the attribute name part
+          return attrMatch.replace(new RegExp(`\\s+${attrName}`), ` ${transformed}`);
         }
       );
     }

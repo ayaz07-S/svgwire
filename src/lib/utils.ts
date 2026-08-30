@@ -48,7 +48,18 @@ export function readFileAsText(file: File): Promise<string> {
 export function toPascalCase(str: string): string {
   return str
     .replace(/[^a-zA-Z0-9]+(.)/g, (_, char) => char.toUpperCase())
+    .replace(/[^a-zA-Z0-9]/g, '')
     .replace(/^(.)/, (_, char) => char.toUpperCase());
+}
+
+/** Convert a file path to a valid SVG sprite symbol ID (e.g., solid/home.svg -> solid-home) */
+export function sanitizeSpriteId(filePath: string): string {
+  return filePath
+    .replace(/\.svg$/i, '')
+    .replace(/[^a-zA-Z0-9-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+    .toLowerCase();
 }
 
 /** Format byte size for display */

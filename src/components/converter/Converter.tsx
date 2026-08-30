@@ -39,14 +39,6 @@ export function Converter({ defaultFramework }: ConverterProps) {
     return convert(rawSvg, options);
   }, [rawSvg, options]);
 
-  const handleFrameworkChange = useCallback((frameworkId: string) => {
-    setOptions(prev => ({
-      ...prev,
-      framework: frameworkId,
-      ...getDefaultsForFramework(frameworkId),
-    }));
-  }, []);
-
   const handleOptionChange = useCallback((key: keyof ConversionOptions, value: unknown) => {
     setOptions(prev => ({ ...prev, [key]: value }));
   }, []);
@@ -68,25 +60,28 @@ export function Converter({ defaultFramework }: ConverterProps) {
         </p>
       </div>
 
-      {/* Framework Tabs (inside island for instant switching) */}
-      <div className="flex flex-wrap gap-1.5 mb-6" role="tablist" aria-label="Framework selector">
-        {FRAMEWORKS.map(fw => (
-          <button
-            key={fw.id}
-            role="tab"
-            aria-selected={options.framework === fw.id}
-            onClick={() => handleFrameworkChange(fw.id)}
-            className={`rounded-[64px] px-4 py-1.5 text-body-sm transition-all duration-150 ${
-              options.framework === fw.id
-                ? 'bg-ink text-on-primary shadow-level-2'
-                : 'bg-canvas text-body shadow-level-1 hover:bg-canvas-soft-2 hover:text-ink'
-            }`}
-            id={`tab-${fw.id}`}
-          >
-            {fw.name}
-          </button>
-        ))}
-      </div>
+      {/* Framework Tabs (Primary Navigation) */}
+      <nav className="flex flex-wrap gap-2 mb-8 border-b border-hairline pb-6" aria-label="Framework selector">
+        {FRAMEWORKS.map(fw => {
+          const isActive = options.framework === fw.id;
+          const href = fw.id === 'react' ? '/' : `/${fw.slug}`;
+          return (
+            <a
+              key={fw.id}
+              href={href}
+              aria-current={isActive ? 'page' : undefined}
+              className={`rounded-full px-5 py-2 text-body-sm-strong transition-all duration-200 flex items-center gap-2 ${
+                isActive
+                  ? 'bg-ink text-on-primary shadow-level-2 scale-[1.02]'
+                  : 'bg-canvas text-body border border-hairline shadow-level-1 hover:bg-canvas-soft-2 hover:text-ink hover:border-hairline-strong'
+              }`}
+              id={`tab-${fw.id}`}
+            >
+              {fw.name}
+            </a>
+          );
+        })}
+      </nav>
 
       {/* Mode Selector */}
       <div className="flex items-center justify-between mb-4 mt-8 border-b border-hairline pb-4">
@@ -98,6 +93,8 @@ export function Converter({ defaultFramework }: ConverterProps) {
         options={options}
         onChange={handleOptionChange}
         framework={options.framework}
+        originalSize={result?.parsed.originalSize}
+        parsedSize={result?.parsed ? new Blob([result.parsed.outerHTML]).size : undefined}
       />
 
       {mode === 'single' ? (
@@ -134,7 +131,7 @@ export function Converter({ defaultFramework }: ConverterProps) {
           />
         </>
       ) : (
-        <BatchPane options={options} frameworkSlug={currentFw.slug} />
+        <BatchPane options={options} frameworkSlug={currentFw.slug} mode={mode} />
       )}
     </div>
   );

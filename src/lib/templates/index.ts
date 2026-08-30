@@ -20,6 +20,7 @@ export interface ConversionOptions {
   addClassName: boolean;
   addPropsSpread: boolean;
   exportType: 'default' | 'named';
+  precision: number;
 }
 
 export interface ConversionResult {
@@ -41,6 +42,7 @@ export const DEFAULT_OPTIONS: ConversionOptions = {
   addClassName: true,
   addPropsSpread: true,
   exportType: 'default',
+  precision: 3,
 };
 
 /**
@@ -67,7 +69,7 @@ export function getDefaultsForFramework(frameworkId: string): Partial<Conversion
  * Convert raw SVG to a framework component.
  */
 export function convert(rawSvg: string, options: ConversionOptions): ConversionResult {
-  const parsed = parseSvg(rawSvg);
+  const parsed = parseSvg(rawSvg, { componentName: options.componentName, precision: options.precision });
 
   if (!parsed.isValid) {
     return {
