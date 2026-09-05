@@ -3,19 +3,6 @@
  * Robustly parses and truncates numeric values in SVG paths and coordinate attributes.
  */
 
-const CMD_ARG_COUNTS: Record<string, number> = {
-  M: 2, m: 2,
-  L: 2, l: 2,
-  T: 2, t: 2,
-  H: 1, h: 1,
-  V: 1, v: 1,
-  C: 6, c: 6,
-  S: 4, s: 4,
-  Q: 4, q: 4,
-  A: 7, a: 7,
-  Z: 0, z: 0,
-};
-
 function roundTo(val: number, decimals: number): number {
   const factor = Math.pow(10, decimals);
   return Math.round(val * factor) / factor;

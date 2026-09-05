@@ -49,6 +49,7 @@ export function toPascalCase(str: string): string {
   return str
     .replace(/[^a-zA-Z0-9]+(.)/g, (_, char) => char.toUpperCase())
     .replace(/[^a-zA-Z0-9]/g, '')
+    .replace(/^[0-9]+/, '')
     .replace(/^(.)/, (_, char) => char.toUpperCase());
 }
 
@@ -60,6 +61,22 @@ export function sanitizeSpriteId(filePath: string): string {
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '')
     .toLowerCase();
+}
+
+/** Convert raw SVG string to an optimized Data URI */
+export function encodeSvgDataUri(svgStr: string): string {
+  const encoded = svgStr
+    .trim()
+    .replace(/%/g, '%25')
+    .replace(/"/g, '%22')
+    .replace(/'/g, '%27')
+    .replace(/#/g, '%23')
+    .replace(/</g, '%3C')
+    .replace(/>/g, '%3E')
+    .replace(/&/g, '%26')
+    .replace(/\s+/g, '%20'); // Encode whitespace
+  
+  return `data:image/svg+xml,${encoded}`;
 }
 
 /** Format byte size for display */

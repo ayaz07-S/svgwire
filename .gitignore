@@ -22,3 +22,24 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Windows OS files
+Thumbs.db
+Desktop.ini
+
+# More Environment Variables
+.env.local
+.env.development
+.env.*.local
+
+# Editor configs
+.vscode/
+
+# AI configs
+.agents/
+skills-lock.json
+
+# Testing / Deployments
+coverage/
+.vercel/
+.netlify/

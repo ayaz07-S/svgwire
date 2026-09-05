@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { Upload, FolderArchive, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { FolderArchive, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import JSZip from 'jszip';
 import { scanFiles, readFileAsText, downloadBlob, toPascalCase, sanitizeSpriteId } from '../../lib/utils';
 import { convert, type ConversionOptions } from '../../lib/templates/index';
@@ -126,11 +126,11 @@ export function BatchPane({ options, frameworkSlug, mode }: BatchPaneProps) {
       }
     }
 
-    // Create ZIP file named after the requested convention: svg2component-[framework].zip
+    // Create ZIP file named after the requested convention: svgwire-[framework].zip
     const zipBlob = await zip.generateAsync({ type: 'blob' });
     // Only download if we successfully added at least one file
     if (newLog.some(l => l.status === 'success')) {
-       const zipName = `svg2component-${frameworkSlug.replace('svg-to-', '')}.zip`;
+       const zipName = `svgwire-${frameworkSlug.replace('svg-to-', '')}.zip`;
        downloadBlob(zipBlob, zipName);
     }
   };

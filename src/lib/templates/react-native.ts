@@ -3,9 +3,9 @@
  * Generates a React Native component using react-native-svg.
  */
 
-import type { ParsedSvg } from '../engine/parser';
-import { transformAttrName, transformForReactNative } from '../engine/transformer';
-import { optimizeSvg, type OptimizeOptions } from '../engine/optimizer';
+import type { ParsedSvg } from '../engine/parser.ts';
+import { transformAttrName, transformForReactNative } from '../engine/transformer.ts';
+import { optimizeSvg, type OptimizeOptions } from '../engine/optimizer.ts';
 
 export interface ReactNativeOptions extends OptimizeOptions {
   componentName: string;

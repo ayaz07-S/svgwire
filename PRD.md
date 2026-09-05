@@ -1,11 +1,11 @@
 # Product Requirements Document
-**Project:** SVG2Component
+**Project:** SVG Wire
 **Platform:** Web (Client-Side Only)
 **Tech Stack:** Astro.js, React (Islands), Tailwind CSS v4, Lucide React
 **Deployment Target:** Cloudflare Pages (Static Export)
 
 ## 1. Executive Summary
-SVG2Component is a lightning-fast, client-side developer tool that converts raw SVGs into framework-specific code (React, Vue, Svelte, React Native). It utilizes a "Universal Core" architecture: a single JavaScript DOMParser engine extracts SVG data and passes it to framework-specific template adapters. 
+SVG Wire is a lightning-fast, client-side developer tool that converts raw SVGs into framework-specific code (React, Vue, Svelte, React Native). It utilizes a "Universal Core" architecture: a single JavaScript DOMParser engine extracts SVG data and passes it to framework-specific template adapters. 
 
 ## 2. Architecture & Programmatic SEO (Astro)
 * **Framework:** Astro.js (using `@astrojs/react` for interactivity).

@@ -3,8 +3,8 @@
  * Generates a Svelte 5 component with runes syntax from parsed SVG data.
  */
 
-import type { ParsedSvg } from '../engine/parser';
-import { optimizeSvg, type OptimizeOptions } from '../engine/optimizer';
+import type { ParsedSvg } from '../engine/parser.ts';
+import { optimizeSvg, type OptimizeOptions } from '../engine/optimizer.ts';
 
 export interface SvelteOptions extends OptimizeOptions {
   componentName: string;

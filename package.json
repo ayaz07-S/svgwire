@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "svgwire.com",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "node --experimental-strip-types --test tests/"
+    "test": "node --experimental-strip-types --test \"tests/*.test.js\""
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

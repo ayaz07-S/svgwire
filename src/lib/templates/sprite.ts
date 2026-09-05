@@ -1,4 +1,4 @@
-import type { ConversionOptions } from './index';
+import type { ConversionOptions } from './index.ts';
 
 export function generateSpriteWrapper(framework: string, options: ConversionOptions): { code: string, extension: string, language: string } {
   const componentName = options.componentName || 'Icon';

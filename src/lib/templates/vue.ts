@@ -3,8 +3,8 @@
  * Generates a Vue 3 SFC from parsed SVG data.
  */
 
-import type { ParsedSvg } from '../engine/parser';
-import { optimizeSvg, type OptimizeOptions } from '../engine/optimizer';
+import type { ParsedSvg } from '../engine/parser.ts';
+import { optimizeSvg, type OptimizeOptions } from '../engine/optimizer.ts';
 
 export interface VueOptions extends OptimizeOptions {
   componentName: string;

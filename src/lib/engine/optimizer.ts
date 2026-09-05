@@ -9,12 +9,6 @@ export interface OptimizeOptions {
   addSizeProp: boolean;
 }
 
-/**
- * Color patterns to match for currentColor replacement.
- * Matches hex, rgb, rgba, hsl, hsla, and named colors commonly used in fills/strokes.
- */
-const COLOR_PATTERN = /#(?:[0-9a-fA-F]{3,8})|rgb\([^)]+\)|rgba\([^)]+\)|hsl\([^)]+\)|hsla\([^)]+\)/g;
-
 /** Common fill/stroke values that should NOT be replaced with currentColor */
 const PRESERVE_VALUES = new Set(['none', 'transparent', 'inherit', 'currentColor', 'currentcolor', 'url(']);
 
@@ -51,11 +45,7 @@ export function replaceColorsInHtml(html: string): string {
   return html.replace(
     /((?:fill|stroke)\s*=\s*")([^"]+)(")/g,
     (match, prefix, value, suffix) => {
-      if (PRESERVE_VALUES.has(value) || value.startsWith('url(')) {
-        return match;
-      }
-      if (COLOR_PATTERN.test(value)) {
-        COLOR_PATTERN.lastIndex = 0; // Reset regex state
+      if (!PRESERVE_VALUES.has(value) && !value.startsWith('url(')) {
         return `${prefix}currentColor${suffix}`;
       }
       return match;

@@ -3,11 +3,11 @@
  * Central dispatcher that routes conversion to the correct framework adapter.
  */
 
-import { parseSvg, type ParsedSvg } from '../engine/parser';
-import { generateReact, type ReactOptions } from './react';
-import { generateVue, type VueOptions } from './vue';
-import { generateSvelte, type SvelteOptions } from './svelte';
-import { generateReactNative, type ReactNativeOptions } from './react-native';
+import { parseSvg, type ParsedSvg } from '../engine/parser.ts';
+import { generateReact, type ReactOptions } from './react.ts';
+import { generateVue, type VueOptions } from './vue.ts';
+import { generateSvelte, type SvelteOptions } from './svelte.ts';
+import { generateReactNative, type ReactNativeOptions } from './react-native.ts';
 
 export interface ConversionOptions {
   framework: string;

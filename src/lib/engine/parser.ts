@@ -4,7 +4,7 @@
  * Zero dependencies. Zero backend.
  */
 
-import { truncatePath, truncateNumberStrings } from './precision';
+import { truncatePath, truncateNumberStrings } from './precision.ts';
 
 export interface ParsedSvg {
   /** The root SVG element's attributes */

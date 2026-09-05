@@ -9,7 +9,7 @@ const seoBlocks: Record<string, { title: string; content: string }[]> = {
   react: [
     {
       title: 'Why convert SVG to React components?',
-      content: 'Inline SVG in JSX gives you full CSS and JavaScript control over every path, fill, and stroke. Unlike <img> tags, React SVG components support dynamic props, theme-aware colors via currentColor, and tree-shaking — meaning unused icons never ship to your users. SVG2Component handles the tedious attribute mapping (stroke-width → strokeWidth, fill-rule → fillRule) automatically.',
+      content: 'Inline SVG in JSX gives you full CSS and JavaScript control over every path, fill, and stroke. Unlike <img> tags, React SVG components support dynamic props, theme-aware colors via currentColor, and tree-shaking — meaning unused icons never ship to your users. SVG Wire handles the tedious attribute mapping (stroke-width → strokeWidth, fill-rule → fillRule) automatically.',
     },
     {
       title: 'TypeScript support built in.',
@@ -17,17 +17,17 @@ const seoBlocks: Record<string, { title: string; content: string }[]> = {
     },
     {
       title: 'Zero latency. Zero backend.',
-      content: 'SVG2Component runs entirely in your browser using DOMParser — no files are uploaded, no API calls are made, and no data leaves your machine. Paste your SVG and get your component in under 1ms.',
+      content: 'SVG Wire runs entirely in your browser using DOMParser — no files are uploaded, no API calls are made, and no data leaves your machine. Paste your SVG and get your component in under 1ms.',
     },
   ],
   vue: [
     {
       title: 'Vue 3 SFC output with script setup.',
-      content: 'SVG2Component generates Vue 3 Single File Components using the modern <script setup> syntax. Each component includes defineOptions for component naming, v-bind="$attrs" for prop forwarding, and optional TypeScript support with defineProps<Props>().',
+      content: 'SVG Wire generates Vue 3 Single File Components using the modern <script setup> syntax. Each component includes defineOptions for component naming, v-bind="$attrs" for prop forwarding, and optional TypeScript support with defineProps<Props>().',
     },
     {
       title: 'Keeps SVG attributes in kebab-case.',
-      content: 'Unlike React which requires camelCase, Vue templates use standard HTML attribute conventions. SVG2Component preserves the native kebab-case format (stroke-width, fill-rule) so your Vue components look natural and idiomatic.',
+      content: 'Unlike React which requires camelCase, Vue templates use standard HTML attribute conventions. SVG Wire preserves the native kebab-case format (stroke-width, fill-rule) so your Vue components look natural and idiomatic.',
     },
     {
       title: 'Tailwind CSS compatible.',
@@ -37,11 +37,11 @@ const seoBlocks: Record<string, { title: string; content: string }[]> = {
   svelte: [
     {
       title: 'Svelte 5 runes syntax.',
-      content: 'SVG2Component generates Svelte 5 components using the new $props() runes syntax. Rest props are spread with {...restProps}, and class is properly destructured from $props() for seamless Tailwind/CSS integration.',
+      content: 'SVG Wire generates Svelte 5 components using the new $props() runes syntax. Rest props are spread with {...restProps}, and class is properly destructured from $props() for seamless Tailwind/CSS integration.',
     },
     {
       title: 'Minimal bundle, maximum performance.',
-      content: 'Svelte compiles components away at build time — there\'s no virtual DOM overhead. Your SVG icons become zero-runtime components that ship as vanilla DOM operations. Combined with SVG2Component\'s client-side processing, your icon workflow has zero waste.',
+      content: 'Svelte compiles components away at build time — there\'s no virtual DOM overhead. Your SVG icons become zero-runtime components that ship as vanilla DOM operations. Combined with SVG Wire\'s client-side processing, your icon workflow has zero waste.',
     },
     {
       title: 'Works with SvelteKit.',
@@ -51,7 +51,7 @@ const seoBlocks: Record<string, { title: string; content: string }[]> = {
   'react-native': [
     {
       title: 'React Native SVG with proper imports.',
-      content: 'SVG2Component maps standard SVG elements to their react-native-svg equivalents: <path> becomes <Path>, <circle> becomes <Circle>, <g> becomes <G>. Import statements are automatically generated based on which elements your SVG uses.',
+      content: 'SVG Wire maps standard SVG elements to their react-native-svg equivalents: <path> becomes <Path>, <circle> becomes <Circle>, <g> becomes <G>. Import statements are automatically generated based on which elements your SVG uses.',
     },
     {
       title: 'NativeWind support.',

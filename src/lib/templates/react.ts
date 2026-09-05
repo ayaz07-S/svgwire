@@ -3,9 +3,9 @@
  * Generates a React component from parsed SVG data.
  */
 
-import type { ParsedSvg } from '../engine/parser';
-import { transformAttrName, transformInnerHtml } from '../engine/transformer';
-import { optimizeSvg, type OptimizeOptions } from '../engine/optimizer';
+import type { ParsedSvg } from '../engine/parser.ts';
+import { transformAttrName, transformInnerHtml } from '../engine/transformer.ts';
+import { optimizeSvg, type OptimizeOptions } from '../engine/optimizer.ts';
 
 export interface ReactOptions extends OptimizeOptions {
   componentName: string;

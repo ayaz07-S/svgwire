@@ -50,13 +50,13 @@ export function Converter({ defaultFramework }: ConverterProps) {
       {/* Header */}
       <div className="mb-6 sm:mb-8">
         <p className="text-caption-mono text-mute mb-2 uppercase tracking-wider">
-          {currentFw.name} converter
+          SVG Wire • {currentFw.name} Converter
         </p>
         <h1 className="text-display-lg text-ink mb-3">
-          {currentFw.h1}
+          Wire SVG assets into production-ready code.
         </h1>
         <p className="text-body-md text-body max-w-2xl">
-          Paste your SVG code or drop a file. Get a production-ready {currentFw.name} component instantly — processed entirely in your browser.
+          Convert raw SVG code or drop a file to get production-ready {currentFw.name} components instantly — all processed in your browser.
         </p>
       </div>
 
@@ -120,6 +120,7 @@ export function Converter({ defaultFramework }: ConverterProps) {
                 outputSize={result?.outputSize ?? 0}
                 extension={result?.extension ?? '.tsx'}
                 componentName={options.componentName}
+                parsedSvgString={result?.parsed?.outerHTML}
               />
             </div>
           </div>
