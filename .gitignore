@@ -43,3 +43,4 @@ skills-lock.json
 coverage/
 .vercel/
 .netlify/
+.wrangler/
