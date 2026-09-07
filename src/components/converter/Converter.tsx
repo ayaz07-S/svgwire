@@ -17,6 +17,7 @@ import { BatchPane } from './BatchPane';
 
 interface ConverterProps {
   defaultFramework: string;
+  activeMode: ConverterMode;
 }
 
 const SAMPLE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -25,8 +26,7 @@ const SAMPLE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="2
   <path d="M12 16V8"/>
 </svg>`;
 
-export function Converter({ defaultFramework }: ConverterProps) {
-  const [mode, setMode] = useState<ConverterMode>('single');
+export function Converter({ defaultFramework, activeMode }: ConverterProps) {
   const [rawSvg, setRawSvg] = useState(SAMPLE_SVG);
   const [options, setOptions] = useState<ConversionOptions>(() => ({
     ...DEFAULT_OPTIONS,
@@ -45,18 +45,24 @@ export function Converter({ defaultFramework }: ConverterProps) {
 
   const currentFw = getFrameworkById(options.framework);
 
+  let h1Text = '';
+  if (activeMode === 'single') {
+    h1Text = `SVG to ${currentFw.name} Component Converter`;
+  } else if (activeMode === 'batch') {
+    h1Text = "Batch SVG Converter — Convert Folders to React, Vue & Svelte in Parallel";
+  } else if (activeMode === 'sprite') {
+    h1Text = "SVG Sprite Sheet Generator — Compile Symbols & Type-Safe TypeScript Unions";
+  }
+
   return (
     <div className="mx-auto max-w-[1400px] px-4 sm:px-6 py-6 sm:py-8">
       {/* Header */}
-      <div className="mb-6 sm:mb-8">
-        <p className="text-caption-mono text-mute mb-2 uppercase tracking-wider">
-          SVG Wire • {currentFw.name} Converter
-        </p>
+      <div className="mb-6 sm:mb-8 text-center sm:text-left">
         <h1 className="text-display-lg text-ink mb-3">
-          Wire SVG assets into production-ready code.
+          {h1Text}
         </h1>
         <p className="text-body-md text-body max-w-2xl">
-          Convert raw SVG code or drop a file to get production-ready {currentFw.name} components instantly — all processed in your browser.
+          SVGWire — Wire SVG assets into production-ready code.
         </p>
       </div>
 
@@ -85,7 +91,7 @@ export function Converter({ defaultFramework }: ConverterProps) {
 
       {/* Mode Selector */}
       <div className="flex items-center justify-between mb-4 mt-8 border-b border-hairline pb-4">
-        <ModeSelector mode={mode} onChange={setMode} />
+        <ModeSelector activeMode={activeMode} frameworkSlug={currentFw.slug} />
       </div>
 
       {/* Options Panel */}
@@ -97,7 +103,7 @@ export function Converter({ defaultFramework }: ConverterProps) {
         parsedSize={result?.parsed ? new Blob([result.parsed.outerHTML]).size : undefined}
       />
 
-      {mode === 'single' ? (
+      {activeMode === 'single' ? (
         <>
           {/* Main Split Pane */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
@@ -132,7 +138,7 @@ export function Converter({ defaultFramework }: ConverterProps) {
           />
         </>
       ) : (
-        <BatchPane options={options} frameworkSlug={currentFw.slug} mode={mode} />
+        <BatchPane options={options} frameworkSlug={currentFw.slug} mode={activeMode} />
       )}
     </div>
   );

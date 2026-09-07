@@ -5,10 +5,10 @@ import SeoContent from '../components/SeoContent.astro';
 ---
 
 <BaseLayout
-  title="SVG Wire — Wire SVG assets into production-ready code"
+  title="SVGWire — Wire SVG assets into production-ready code"
   description="Wire SVG assets into production-ready code. Convert raw SVG code into production-ready React, Vue 3, Svelte 5, and React Native components instantly — all processed in your browser."
 >
-  <Converter client:load defaultFramework="react" />
+  <Converter client:load defaultFramework="react" activeMode="single" />
   <SeoContent framework="react" />
 
   <!-- Homepage-specific SEO content -->
@@ -18,7 +18,7 @@ import SeoContent from '../components/SeoContent.astro';
         Every framework. One tool.
       </h2>
       <p class="text-body-lg text-body text-center max-w-2xl mx-auto mb-16">
-        SVG Wire converts raw SVG code into production-ready components for every major frontend framework. No uploads. No API calls. Everything runs in your browser.
+        SVGWire converts raw SVG code into production-ready components for every major frontend framework. No uploads. No API calls. Everything runs in your browser.
       </p>
 
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

@@ -262,7 +262,7 @@ export function BatchPane({ options, frameworkSlug, mode }: BatchPaneProps) {
 
       {/* Log output */}
       {processedLog.length > 0 && !isProcessing && (
-        <div className="rounded-lg bg-canvas shadow-level-1 border border-hairline overflow-hidden">
+        <div className="rounded-lg bg-canvas shadow-level-1 border border-hairline overflow-hidden transition-colors duration-200">
            <div className="px-4 py-3 border-b border-hairline bg-canvas-soft flex items-center justify-between">
               <h4 className="text-body-sm-strong text-ink">Conversion Log</h4>
               <span className="text-caption text-mute">{processedLog.length} files processed</span>

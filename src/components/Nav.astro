@@ -1,8 +1,9 @@
 ---
+import { ThemeToggle } from './ThemeToggle';
 ---
 
 <header
-  class="sticky top-0 z-50 h-16 border-b border-hairline bg-canvas/95 backdrop-blur supports-[backdrop-filter]:bg-canvas/60"
+  class="sticky top-0 z-50 h-16 border-b border-hairline bg-canvas/95 backdrop-blur supports-[backdrop-filter]:bg-canvas/60 transition-colors duration-200"
 >
   <div class="mx-auto flex h-full max-w-[1400px] items-center justify-between px-6">
     <!-- Logo -->
@@ -13,11 +14,12 @@
           <polyline points="8 6 2 12 8 18"></polyline>
         </svg>
       </div>
-      <span class="text-body-sm-strong text-ink">SVG Wire</span>
+      <span class="text-body-sm-strong text-ink">SVGWire</span>
     </a>
 
     <!-- Right side -->
     <div class="flex items-center gap-3">
+      <!-- GitHub link -->
       <a
         href="https://github.com/ayaz07-S/svgwire.com"
         target="_blank"
@@ -30,6 +32,9 @@
         </svg>
         <span class="hidden sm:inline">GitHub</span>
       </a>
+
+      <!-- Theme Toggle (React island — hydrates client-side) -->
+      <ThemeToggle client:load />
     </div>
   </div>
 </header>

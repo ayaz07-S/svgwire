@@ -1,4 +1,4 @@
-# SVG Wire
+# SVGWire
 
 A blazing fast, 100% client-side SVG to Framework Component converter. Convert raw SVGs into production-ready React, Vue, Svelte, and React Native components entirely within your browser.
 

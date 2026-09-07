@@ -1,11 +1,11 @@
 # Product Requirements Document
-**Project:** SVG Wire
+**Project:** SVGWire
 **Platform:** Web (Client-Side Only)
 **Tech Stack:** Astro.js, React (Islands), Tailwind CSS v4, Lucide React
 **Deployment Target:** Cloudflare Pages (Static Export)
 
 ## 1. Executive Summary
-SVG Wire is a lightning-fast, client-side developer tool that converts raw SVGs into framework-specific code (React, Vue, Svelte, React Native). It utilizes a "Universal Core" architecture: a single JavaScript DOMParser engine extracts SVG data and passes it to framework-specific template adapters. 
+SVGWire is a lightning-fast, client-side developer tool that converts raw SVGs into framework-specific code (React, Vue, Svelte, React Native). It utilizes a "Universal Core" architecture: a single JavaScript DOMParser engine extracts SVG data and passes it to framework-specific template adapters. 
 
 ## 2. Architecture & Programmatic SEO (Astro)
 * **Framework:** Astro.js (using `@astrojs/react` for interactivity).

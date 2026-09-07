@@ -27,7 +27,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toStri
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="SVG Wire" />
+    <meta property="og:site_name" content="SVGWire" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -44,8 +44,27 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toStri
       href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Theme: inline blocking script — must run before first paint to avoid FOUC -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </head>
-  <body class="min-h-screen flex flex-col bg-canvas-soft text-ink font-sans">
+  <body class="min-h-screen flex flex-col bg-canvas-soft text-ink font-sans transition-colors duration-200">
     <Nav />
     <main class="flex-1">
       <slot />

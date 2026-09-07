@@ -20,6 +20,6 @@ const fw = getFrameworkBySlug(Astro.params.framework!);
 ---
 
 <BaseLayout title={fw.title} description={fw.description}>
-  <Converter client:load defaultFramework={frameworkId} />
+  <Converter client:load defaultFramework={frameworkId} activeMode="single" />
   <SeoContent framework={frameworkId} />
 </BaseLayout>

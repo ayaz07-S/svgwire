@@ -18,7 +18,7 @@ export function ActionBar({ code, filename }: ActionBarProps) {
       <button
         onClick={handleDownload}
         disabled={!code}
-        className="inline-flex items-center gap-2 rounded-pill border border-hairline bg-canvas px-4 py-2 text-button-md text-ink shadow-level-1 transition-all duration-150 hover:bg-canvas-soft-2 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
+        className="inline-flex items-center gap-2 rounded-pill border border-hairline bg-canvas px-4 py-2 text-button-md text-ink shadow-level-1 transition-all duration-200 hover:bg-canvas-soft-2 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
         id="action-download"
       >
         <Download size={14} />

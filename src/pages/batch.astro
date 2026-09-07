@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Converter } from '../components/converter/Converter';
+import SeoContent from '../components/SeoContent.astro';
+---
+
+<BaseLayout
+  title="Batch SVG Converter — Convert Folders to React, Vue & Svelte in Parallel"
+  description="Drop an entire folder of SVGs into the browser. SVGWire recursively scans directories and converts files in parallel, preserving your exact folder structure in the output."
+>
+  <Converter client:load defaultFramework="react" activeMode="batch" />
+  <SeoContent framework="batch" />
+</BaseLayout>

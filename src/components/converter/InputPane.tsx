@@ -41,7 +41,7 @@ export function InputPane({ value, onChange, originalSize }: InputPaneProps) {
   }, [onChange]);
 
   return (
-    <div className="flex flex-col rounded-lg bg-canvas shadow-level-2 overflow-hidden">
+    <div className="flex flex-col rounded-lg bg-canvas shadow-level-2 overflow-hidden transition-colors duration-200">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-hairline px-4 py-2.5">
         <div className="flex items-center gap-2">
@@ -53,7 +53,7 @@ export function InputPane({ value, onChange, originalSize }: InputPaneProps) {
             <span className="text-caption-mono text-mute">{formatBytes(originalSize)}</span>
           )}
           <label
-            className="flex items-center gap-1.5 rounded-sm border border-hairline px-2 py-1 text-caption text-body cursor-pointer hover:bg-canvas-soft-2 transition-colors duration-150"
+            className="flex items-center gap-1.5 rounded-sm border border-hairline bg-canvas px-2 py-1 text-caption text-body cursor-pointer hover:bg-canvas-soft-2 hover:text-ink transition-colors duration-150"
             id="file-upload-label"
           >
             <Upload size={12} />
@@ -83,7 +83,7 @@ export function InputPane({ value, onChange, originalSize }: InputPaneProps) {
           value={value}
           onChange={e => onChange(e.target.value)}
           spellCheck={false}
-          className="w-full h-full min-h-[300px] lg:min-h-[420px] resize-none bg-transparent px-4 py-3 text-code text-ink outline-none placeholder:text-mute font-mono"
+          className="w-full h-full min-h-[300px] lg:min-h-[420px] resize-none bg-transparent px-4 py-3 text-code text-ink outline-none placeholder:text-mute font-mono transition-colors duration-200"
           placeholder="Paste SVG code here or drag & drop an .svg file..."
           id="svg-input-textarea"
         />

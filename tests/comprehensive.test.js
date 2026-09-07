@@ -1,5 +1,5 @@
 /**
- * Comprehensive test suite for SVG Wire
+ * Comprehensive test suite for SVGWire
  * Tests all core conversion features across all frameworks.
  */
 import test from 'node:test';

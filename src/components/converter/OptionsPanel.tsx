@@ -23,24 +23,33 @@ function Toggle({
   return (
     <label
       htmlFor={id}
-      className="flex items-center gap-2.5 cursor-pointer select-none group"
+      className="flex items-center gap-2 cursor-pointer select-none group"
     >
       <button
         id={id}
+        type="button"
         role="switch"
         aria-checked={checked}
         onClick={() => onChange(!checked)}
-        className={`relative inline-flex h-5 w-9 shrink-0 rounded-full border border-hairline transition-colors duration-200 ${
-          checked ? 'bg-ink border-ink' : 'bg-canvas-soft-2'
-        }`}
+        className={`
+          relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent
+          transition-colors duration-200 ease-in-out focus:outline-none
+          focus-visible:ring-2 focus-visible:ring-hairline-strong focus-visible:ring-offset-1
+          ${checked
+            ? 'bg-ink'
+            : 'bg-hairline-strong'}
+        `}
       >
         <span
-          className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-canvas shadow-sm transition-transform duration-200 ${
-            checked ? 'translate-x-4' : 'translate-x-0'
-          }`}
+          aria-hidden="true"
+          className={`
+            pointer-events-none inline-block h-4 w-4 transform rounded-full shadow-sm ring-0
+            transition duration-200 ease-in-out bg-on-primary
+            ${checked ? 'translate-x-4' : 'translate-x-0'}
+          `}
         />
       </button>
-      <span className="text-body-sm text-body group-hover:text-ink transition-colors duration-150">
+      <span className="text-xs font-medium text-body group-hover:text-ink transition-colors duration-150 select-none">
         {label}
       </span>
     </label>
@@ -49,7 +58,7 @@ function Toggle({
 
 export function OptionsPanel({ options, onChange, framework, originalSize, parsedSize }: OptionsPanelProps) {
   return (
-    <div className="rounded-lg bg-canvas shadow-level-1 border border-hairline px-4 py-3">
+    <div className="rounded-lg bg-canvas shadow-level-1 border border-hairline px-4 py-3 transition-colors duration-200">
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 flex-wrap">
         {/* Component Name */}
         <div className="flex items-center gap-2">
@@ -84,7 +93,7 @@ export function OptionsPanel({ options, onChange, framework, originalSize, parse
             className="w-24 accent-ink cursor-pointer"
           />
           {originalSize !== undefined && parsedSize !== undefined && originalSize > 0 && (
-            <span className="text-caption-mono text-success whitespace-nowrap">
+            <span className="text-caption-mono text-mute whitespace-nowrap">
               {formatBytes(originalSize)} &rarr; {formatBytes(parsedSize)} ({(
                 ((parsedSize - originalSize) / originalSize) * 100
               ).toFixed(1)}%)

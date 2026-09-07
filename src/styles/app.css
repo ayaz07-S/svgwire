@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* ─── Dark Mode: class-based variant (Tailwind v4) ─── */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ─── DESIGN.MD Token System ─── */
 @theme {
   /* Reset defaults we don't need */
@@ -86,6 +89,11 @@ body {
 ::selection {
   background-color: var(--color-ink);
   color: #f2f2f2;
+}
+
+html.dark ::selection {
+  background-color: #fafafa;
+  color: #0a0a0a;
 }
 
 /* ─── Custom Utilities ─── */
@@ -179,4 +187,82 @@ body {
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
+}
+
+/* ─── Dark Mode: Token Overrides ─── */
+/*
+  In dark mode we remap the design-system surface tokens onto a deep-black
+  Vercel-inspired palette: near-black body, crisp whites for text, and
+  neutral-800 borders.  The @theme block above keeps the *light* defaults;
+  these rules override the raw CSS custom properties on html.dark so every
+  consumer of var(--color-*) automatically adapts.
+*/
+html.dark {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --color-canvas:        #0a0a0a;   /* was #ffffff  → near-black card surface  */
+  --color-canvas-soft:   #0a0a0a;   /* was #fafafa  → page background          */
+  --color-canvas-soft-2: #171717;   /* was #f5f5f5  → inset / hover surface    */
+
+  /* Text */
+  --color-ink:           #f4f4f5;   /* was #171717  → primary text (zinc-100) */
+  --color-body:          #d4d4d8;   /* was #4d4d4d  → secondary text (zinc-300)*/
+  --color-mute:          #a1a1aa;   /* was #888888  → muted text (zinc-400) */
+  --color-disabled:      #71717a;   /* disabled text (zinc-500) */
+  --color-on-primary:    #0a0a0a;   /* was #ffffff  → text on primary button   */
+
+  /* Borders */
+  --color-hairline:        #262626; /* was #ebebeb  → dividers / card borders  */
+  --color-hairline-strong: #525252; /* was #a1a1a1  → stronger dividers        */
+
+  /* Shadows: lighten the inset ring so it shows on dark surfaces */
+  --shadow-level-1: inset 0 0 0 1px #ffffff0d;
+  --shadow-level-2: 0px 1px 1px #00000040, 0px 2px 2px #00000030, inset 0 0 0 1px #ffffff0d;
+  --shadow-level-3: 0px 2px 2px #00000030, 0px 8px 8px -8px #00000040, inset 0 0 0 1px #ffffff0d;
+  --shadow-level-4: 0px 2px 2px #00000030, 0px 8px 16px -4px #00000040, inset 0 0 0 1px #ffffff0d;
+  --shadow-level-5: 0px 1px 1px #00000040, 0px 8px 16px -4px #00000040, 0px 24px 32px -8px #00000050, inset 0 0 0 1px #ffffff0d;
+}
+
+/* ─── Preview Sandbox: Checkerboard backing ─── */
+/*
+  Makes both pure-black (#000) and pure-white (#ffffff) SVGs visible
+  regardless of theme.  Two-tone neutral squares so neither colour gets
+  swallowed by a flat background.
+*/
+@utility bg-checkerboard {
+  background-color: #e0e0e0;
+  background-image:
+    linear-gradient(45deg, #b0b0b0 25%, transparent 25%),
+    linear-gradient(-45deg, #b0b0b0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #b0b0b0 75%),
+    linear-gradient(-45deg, transparent 75%, #b0b0b0 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+}
+
+html.dark .bg-checkerboard {
+  background-color: #2a2a2a;
+  background-image:
+    linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
+    linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
+    linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+}
+
+/* ─── Preview Sandbox: Fixed Figma-style transparency grid ─── */
+/*
+  Always renders as a light transparency grid (white + #F3F4F6) regardless of
+  the application's dark/light mode. This represents canvas transparency as
+  seen in design tools, not the app theme.
+*/
+@utility bg-preview-checker {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(45deg, #e4e4e7 25%, transparent 25%),
+    linear-gradient(-45deg, #e4e4e7 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e4e4e7 75%),
+    linear-gradient(-45deg, transparent 75%, #e4e4e7 75%);
+  background-size: 14px 14px;
+  background-position: 0 0, 0 7px, 7px -7px, -7px 0px;
 }
