@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const effectiveDate = 'September 14, 2026';
+---
+
+<BaseLayout
+  title="Privacy Policy — SVGWire"
+  description="SVGWire Privacy Policy. Read how SVGWire processes all SVG files locally in your browser with zero server uploads, no cookies, and no tracking."
+  canonical="https://svgwire.com/privacy"
+>
+  <div class="mx-auto max-w-[860px] px-6 py-16 sm:py-20">
+    <!-- Header -->
+    <div class="mb-12 border-b border-hairline pb-8">
+      <p class="text-caption-mono text-mute uppercase tracking-wider mb-3">Legal</p>
+      <h1 class="text-display-md text-ink mb-3 font-semibold">Privacy Policy</h1>
+      <p class="text-body-sm text-mute">Effective Date: {effectiveDate}</p>
+    </div>
+
+    <!-- Privacy statement callout -->
+    <div class="mb-12 rounded-xl border border-hairline bg-canvas-soft p-6">
+      <h2 class="text-body-md-strong text-ink mb-2">Core Privacy Guarantee</h2>
+      <p class="text-body-md text-body leading-relaxed">
+        Your SVGs are processed locally in your browser. Files are never uploaded to a server.
+      </p>
+    </div>
+
+    <!-- Article Content -->
+    <div class="space-y-10 text-body-md text-body leading-relaxed">
+      <!-- 1. Overview -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">1. Overview</h2>
+        <p>
+          SVGWire ("we", "us", or "our") operates the web utility located at <a href="https://svgwire.com" class="text-ink underline hover:text-mute">https://svgwire.com</a>. This Privacy Policy explains how information is handled when you access and use our website and conversion tools.
+        </p>
+        <p class="mt-3">
+          We are committed to user privacy. SVGWire is designed from the ground up as a client-side web application, meaning vector processing, code generation, sprite compilation, and batch folder bundling take place within your local browser environment.
+        </p>
+      </section>
+
+      <!-- 2. Information Processed -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">2. Information Processed</h2>
+        <p>
+          SVGWire does not require user registration, account creation, or login credentials to access any feature. We do not request or collect personal identification information such as your name, email address, physical address, phone number, or payment details.
+        </p>
+      </section>
+
+      <!-- 3. SVG & File Processing -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">3. SVG & File Processing</h2>
+        <p>
+          When you paste raw SVG code, upload SVG files, or drop SVG directories into SVGWire:
+        </p>
+        <ul class="mt-3 list-disc pl-6 space-y-2">
+          <li><strong>Local Execution:</strong> All parsing, transformations, DOM manipulation, code generation, and file compression are performed locally on your device using JavaScript and browser APIs (such as DOMParser and JSZip).</li>
+          <li><strong>No File Uploads:</strong> Content input into the tool is never sent to our servers or transmitted across external networks.</li>
+          <li><strong>No Content Storage:</strong> We do not store, view, index, or retain copies of your SVG source files or generated component output.</li>
+        </ul>
+      </section>
+
+      <!-- 4. Local Storage -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">4. Local Storage</h2>
+        <p>
+          SVGWire does not set or use HTTP cookies.
+        </p>
+        <p class="mt-3">
+          We utilize your web browser's <code>localStorage</code> API solely to preserve basic user interface preferences across visits:
+        </p>
+        <ul class="mt-3 list-disc pl-6 space-y-2">
+          <li><code>theme</code>: Remembers your selected color theme mode (dark or light).</li>
+          <li><code>svgwire-preview-bg</code>: Remembers your chosen preview canvas background (light, dark, or transparent checkerboard).</li>
+        </ul>
+        <p class="mt-3">
+          This data remains stored locally on your device and can be cleared at any time through your browser settings.
+        </p>
+      </section>
+
+      <!-- 5. Analytics & Tracking -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">5. Analytics & Tracking</h2>
+        <p>
+          SVGWire does not employ third-party behavioral analytics packages, session recording tools, advertising networks, or user-tracking scripts (such as Google Analytics or social media pixel beacons).
+        </p>
+      </section>
+
+      <!-- 6. Third-Party Services -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">6. Third-Party Services & Hosting</h2>
+        <p>
+          Our application relies on a minimal set of third-party infrastructure providers to render and deliver web pages:
+        </p>
+        <ul class="mt-3 list-disc pl-6 space-y-2">
+          <li><strong>Google Fonts:</strong> Web typography stylesheets are requested from Google Fonts (<code>fonts.googleapis.com</code> and <code>fonts.gstatic.com</code>). Serving typography via Google Fonts may involve standard network requests containing your IP address and user-agent string as governed by Google's Privacy Policy.</li>
+          <li><strong>Cloudflare Infrastructure:</strong> SVGWire's static web pages are delivered via Cloudflare edge infrastructure. Cloudflare may process standard network request headers (including IP address and user-agent) at the network layer for CDN delivery, security mitigation, and service stability.</li>
+        </ul>
+      </section>
+
+      <!-- 7. Data Retention -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">7. Data Retention</h2>
+        <p>
+          Because SVGWire does not collect, store, or transmit user data or uploaded SVG files to remote servers, there is no remote database or server storage containing user data to retain.
+        </p>
+      </section>
+
+      <!-- 8. Security -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">8. Security</h2>
+        <p>
+          SVGWire is served exclusively over HTTPS encryption to ensure web traffic integrity. Because all file processing takes place client-side within your browser's security sandbox, your data security remains under your direct control on your personal device.
+        </p>
+      </section>
+
+      <!-- 9. Children's Privacy -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">9. Children's Privacy</h2>
+        <p>
+          SVGWire is a general-audience developer utility. We do not knowingly solicit or collect information from children under the age of 13.
+        </p>
+      </section>
+
+      <!-- 10. Changes to This Policy -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">10. Changes to This Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time to reflect updates in functionality or legal requirements. Any modifications will be posted directly on this page with an updated Effective Date.
+        </p>
+      </section>
+
+      <!-- 11. Contact Information -->
+      <section>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">11. Contact Information</h2>
+        <p>
+          If you have questions or concerns regarding this Privacy Policy or SVGWire, please contact us at:
+        </p>
+        <div class="mt-4 rounded-lg border border-hairline bg-canvas-soft p-4 font-mono text-body-sm">
+          <p>Entity: [INSERT LEGAL ENTITY / COMPANY NAME]</p>
+          <p>Email: [INSERT CONTACT EMAIL ADDRESS]</p>
+          <p>Website: https://svgwire.com</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

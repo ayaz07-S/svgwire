@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface FaqCategory {
+  id: string;
+  title: string;
+  badge: string;
+  description: string;
+  items: FaqItem[];
+}
+
+const faqCategories: FaqCategory[] = [
+  {
+    id: 'general',
+    title: 'General & Privacy',
+    badge: 'Home / Overview',
+    description: 'Core product details, licensing, and security architecture.',
+    items: [
+      {
+        question: 'What is SVGWire?',
+        answer: 'SVGWire is a browser-based developer utility that converts raw SVG assets into production-ready code components for React, Vue 3, Svelte 5, React Native, and Tailwind CSS. It also compiles multi-icon SVG sprite sheets and converts entire folder structures in batch mode.',
+      },
+      {
+        question: 'Is SVGWire free?',
+        answer: 'Yes, SVGWire is 100% free to use. There are no paid tiers, subscriptions, paywalls, or conversion limits.',
+      },
+      {
+        question: 'Are SVG files uploaded to a server?',
+        answer: 'Your SVGs are processed locally in your browser. Files are never uploaded to a server.',
+      },
+      {
+        question: 'How does SVGWire process SVG files?',
+        answer: "SVGWire uses your browser's native DOMParser API and JavaScript engine to parse, optimize, and transform SVG trees entirely on the client side. No server APIs or external web services are involved in the processing pipeline.",
+      },
+      {
+        question: 'Is my SVG data kept private?',
+        answer: 'Yes. Because all SVG parsing, transformation, sprite compilation, and ZIP bundling happen locally inside your web browser session, your vector designs and proprietary graphics never leave your device.',
+      },
+      {
+        question: 'Can I use generated code in my projects?',
+        answer: 'Yes. You retain full ownership of your SVG assets and any code components generated from them. You are free to use, modify, and distribute the generated code in both personal and commercial projects without attribution.',
+      },
+    ],
+  },
+  {
+    id: 'single-converter',
+    title: 'Single Converter & Options',
+    badge: 'Framework Converters',
+    description: 'Framework outputs, TypeScript interfaces, and optimization settings.',
+    items: [
+      {
+        question: 'Which frameworks are supported?',
+        answer: 'SVGWire supports React (JSX/TSX), Vue 3 Single File Components (<script setup>), Svelte 5 (runes syntax), React Native (with optional NativeWind support), and Tailwind CSS React components.',
+      },
+      {
+        question: 'Does SVGWire support React, Vue, Svelte and React Native?',
+        answer: 'Yes. Each framework output is generated according to idiomatic best practices: React components use camelCase attributes and forwardRef/props spreading; Vue 3 uses SFC syntax with kebab-case attributes; Svelte 5 uses $props() runes; and React Native maps SVG primitives to react-native-svg components.',
+      },
+      {
+        question: 'What is the TypeScript output?',
+        answer: 'When the TypeScript toggle is enabled, SVGWire generates explicit prop types extending standard element interfaces (such as React.SVGProps<SVGSVGElement> or framework equivalents). This provides strict type safety, auto-completion, and full documentation in your IDE.',
+      },
+      {
+        question: 'What does the currentColor option do?',
+        answer: 'The currentColor toggle replaces hardcoded color values (such as #000000 or rgb(...)) on fill and stroke attributes with "currentColor". This allows your icons to inherit their color dynamically from parent CSS color declarations or Tailwind text-* utility classes.',
+      },
+      {
+        question: 'What does Remove dimensions do?',
+        answer: 'The "Remove dimensions" option strips explicit width and height attributes from the root <svg> tag while preserving the viewBox attribute. This makes the SVG fully responsive, enabling you to control its rendered dimensions using CSS or Tailwind width/height classes.',
+      },
+      {
+        question: 'What is the Tailwind Mask output?',
+        answer: 'Tailwind Mask mode converts your SVG into an inline CSS mask URI declaration (mask-image: url(...)). This lets you style vector icons using standard Tailwind background utilities and colors without rendering inline SVG element trees.',
+      },
+      {
+        question: 'What is a Data URI?',
+        answer: 'A Data URI is an encoded string representation of the raw SVG file format (using URL-encoding or Base64). It enables you to inline vector graphics directly inside HTML <img> src attributes or CSS background-image declarations without making an extra network HTTP request.',
+      },
+      {
+        question: 'Does SVGWire work well with Figma-exported SVGs?',
+        answer: 'Yes. SVGWire automatically cleans up common Figma export quirks, including redundant wrapper groups, clipPath masks, non-standard XML namespaces, and fixed pixel dimensions.',
+      },
+    ],
+  },
+  {
+    id: 'batch',
+    title: 'Batch Folder Conversion',
+    badge: 'Batch Mode',
+    description: 'Bulk folder processing and directory structure handling.',
+    items: [
+      {
+        question: 'Can I convert multiple SVG files at once?',
+        answer: 'Yes. Switching to Batch Folder mode lets you drop or select an entire folder of SVGs. SVGWire processes all files in parallel inside the browser and bundles the converted components into a single downloadable .zip archive.',
+      },
+      {
+        question: 'Does Batch Folder preserve nested folder structure?',
+        answer: 'Yes. SVGWire recursively scans uploaded directory trees and preserves your exact folder layout and file paths inside the generated output ZIP file.',
+      },
+    ],
+  },
+  {
+    id: 'sprite',
+    title: 'SVG Sprite Generation',
+    badge: 'Sprite Generator',
+    description: 'Symbol sheet compilation and type-safe icon unions.',
+    items: [
+      {
+        question: 'What is an SVG sprite?',
+        answer: 'An SVG sprite combines multiple SVG vector icons into a single compiled <svg> document containing reusable <symbol> nodes. Icons are rendered in HTML via <use href="#icon-id" />, eliminating multiple network requests by serving all icons in one cached asset.',
+      },
+      {
+        question: 'What files does Sprite mode generate?',
+        answer: 'Sprite mode generates a compiled sprite.svg file containing all packed <symbol> elements, along with an accompanying icon-names.ts file providing a TypeScript union type of all symbol IDs for type-safe icon referencing.',
+      },
+    ],
+  },
+];
+
+const allFaqs = faqCategories.flatMap(c => c.items);
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': allFaqs.map(item => ({
+    '@type': 'Question',
+    'name': item.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': item.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="Frequently Asked Questions — SVGWire"
+  description="Find answers to common questions about SVGWire: browser processing, framework support (React, Vue, Svelte, React Native), sprite sheet generation, batch conversion, and SVG options."
+  canonical="https://svgwire.com/faq"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="mx-auto max-w-[1000px] px-6 py-16 sm:py-20">
+    <!-- Header -->
+    <div class="mb-14">
+      <p class="text-caption-mono text-mute uppercase tracking-wider mb-3">Documentation & Help</p>
+      <h1 class="text-display-md text-ink mb-4 font-semibold">Frequently Asked Questions</h1>
+      <p class="text-body-lg text-body max-w-2xl leading-relaxed">
+        Everything you need to know about SVGWire: how client-side processing works, supported frameworks, customization options, batch conversion, and SVG sprites.
+      </p>
+    </div>
+
+    <!-- Category Nav / Jump links -->
+    <div class="mb-12 flex flex-wrap gap-2 border-b border-hairline pb-6">
+      {faqCategories.map(category => (
+        <a
+          href={`#${category.id}`}
+          class="rounded-full border border-hairline bg-canvas-soft px-4 py-1.5 text-body-sm text-body transition-colors duration-150 hover:bg-canvas-soft-2 hover:text-ink"
+        >
+          {category.title}
+        </a>
+      ))}
+    </div>
+
+    <!-- FAQ Sections -->
+    <div class="space-y-16">
+      {faqCategories.map(category => (
+        <section id={category.id} class="scroll-mt-24">
+          <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-hairline pb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="rounded bg-canvas-soft-2 px-2 py-0.5 text-caption-mono text-mute font-medium">
+                  {category.badge}
+                </span>
+                <h2 class="text-display-sm text-ink font-semibold">{category.title}</h2>
+              </div>
+              <p class="text-body-sm text-mute">{category.description}</p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            {category.items.map((item, idx) => (
+              <details
+                class="group rounded-xl border border-hairline bg-canvas p-5 transition-colors duration-150 hover:border-hairline-strong"
+              >
+                <summary class="flex cursor-pointer items-center justify-between gap-4 font-medium text-ink text-body-md select-none list-none [&::-webkit-details-marker]:hidden">
+                  <span class="text-body-md-strong text-ink">{item.question}</span>
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-hairline text-mute group-open:rotate-180 transition-transform duration-200">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                  </span>
+                </summary>
+                <div class="mt-4 pt-3 border-t border-hairline/60 text-body-sm text-body leading-relaxed">
+                  {item.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- Bottom prompt -->
+    <div class="mt-20 rounded-xl border border-hairline bg-canvas-soft p-8 text-center">
+      <h3 class="text-body-md-strong text-ink mb-2">Ready to convert your icons?</h3>
+      <p class="text-body-sm text-mute max-w-lg mx-auto mb-6">
+        Wire your SVG assets into clean, production-ready code instantly in your browser.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a
+          href="/"
+          class="rounded-md border border-hairline-strong bg-ink px-4 py-2 text-body-sm text-canvas font-medium transition-opacity hover:opacity-90"
+        >
+          Open Converter
+        </a>
+        <a
+          href="/batch"
+          class="rounded-md border border-hairline bg-canvas px-4 py-2 text-body-sm text-ink font-medium hover:bg-canvas-soft-2 transition-colors"
+        >
+          Batch Folder Mode
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
