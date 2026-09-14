@@ -68,33 +68,6 @@ const year = new Date().getFullYear();
       </ul>
     </div>
 
-    <!-- Support & Legal -->
-    <div>
-      <h3 class="text-caption-mono text-mute uppercase tracking-wider mb-4">
-        Support & Legal
-      </h3>
-      <ul class="space-y-2.5">
-        <li>
-          <a
-            href="/faq"
-            class="text-body-sm text-body hover:text-ink transition-colors"
-            >FAQ</a>
-        </li>
-        <li>
-          <a
-            href="/privacy"
-            class="text-body-sm text-body hover:text-ink transition-colors"
-            >Privacy Policy</a>
-        </li>
-        <li>
-          <a
-            href="/terms"
-            class="text-body-sm text-body hover:text-ink transition-colors"
-            >Terms of Service</a>
-        </li>
-      </ul>
-    </div>
-
     <!-- Resources -->
     <div>
       <h3 class="text-caption-mono text-mute uppercase tracking-wider mb-4">
@@ -119,15 +92,52 @@ const year = new Date().getFullYear();
         </li>
       </ul>
     </div>
+
+    <!-- Built With -->
+    <div>
+      <h3 class="text-caption-mono text-mute uppercase tracking-wider mb-4">
+        Built With
+      </h3>
+      <ul class="space-y-2.5">
+        <li>
+          <a
+            href="https://astro.build"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-body-sm text-body hover:text-ink transition-colors"
+            >Astro</a>
+        </li>
+        <li>
+          <a
+            href="https://react.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-body-sm text-body hover:text-ink transition-colors"
+            >React Islands</a>
+        </li>
+        <li>
+          <a
+            href="https://tailwindcss.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-body-sm text-body hover:text-ink transition-colors"
+            >Tailwind CSS v4</a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <!-- Bottom -->
   <div
-    class="mx-auto mt-12 max-w-[1400px] border-t border-hairline pt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
+    class="mx-auto mt-12 max-w-[1400px] border-t border-hairline pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
   >
     <p class="text-caption text-mute">
-      © {year} SVGWire. All processing happens in your browser.
+      © {year} SVGWire. All processing happens in your browser. · No data is ever sent to a server.
     </p>
-    <p class="text-caption text-mute">No data is ever sent to a server.</p>
+    <div class="flex flex-wrap gap-x-4 gap-y-2">
+      <a href="/faq" class="text-caption text-mute hover:text-ink transition-colors">FAQ</a>
+      <a href="/privacy" class="text-caption text-mute hover:text-ink transition-colors">Privacy Policy</a>
+      <a href="/terms" class="text-caption text-mute hover:text-ink transition-colors">Terms of Service</a>
+    </div>
   </div>
 </footer>
