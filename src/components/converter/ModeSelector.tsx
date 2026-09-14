@@ -9,7 +9,7 @@ export function ModeSelector({ activeMode, frameworkSlug }: ModeSelectorProps) {
   const singleRoute = frameworkSlug && frameworkSlug !== 'react' ? `/${frameworkSlug}` : '/';
   
   return (
-    <div className="inline-flex items-center rounded-pill bg-canvas shadow-level-1 border border-hairline p-1 mb-4 transition-colors duration-200">
+    <div className="inline-flex items-center rounded-pill bg-canvas shadow-level-1 border border-hairline p-1 transition-colors duration-200">
       <a
         href={singleRoute}
         className={`rounded-pill px-4 py-1.5 text-body-sm-strong transition-colors duration-150 ${

@@ -210,7 +210,7 @@ export function BatchPane({ options, frameworkSlug, mode }: BatchPaneProps) {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4 mt-4">
+    <div className="flex flex-col gap-4 mt-3">
       {/* Drop Zone */}
       <div
         className={`relative min-h-[300px] flex flex-col items-center justify-center rounded-lg border-2 border-dashed transition-colors duration-200 cursor-pointer ${

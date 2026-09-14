@@ -44,6 +44,14 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
     setOptions(prev => ({ ...prev, [key]: value }));
   }, []);
 
+  const handleFrameworkChange = useCallback((frameworkId: string) => {
+    setOptions(prev => ({
+      ...prev,
+      framework: frameworkId,
+      ...getDefaultsForFramework(frameworkId),
+    }));
+  }, []);
+
   const currentFw = getFrameworkById(options.framework);
 
   let subtitleText = '';
@@ -56,10 +64,10 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
   }
 
   return (
-    <div className="mx-auto max-w-[1400px] px-4 sm:px-6 py-6 sm:py-8">
+    <div className="mx-auto max-w-[1400px] px-4 sm:px-6 py-4 sm:py-6">
       {/* Header */}
-      <div className="mb-6 sm:mb-8 text-center sm:text-left">
-        <h1 className="text-display-lg text-ink mb-3">
+      <div className="mb-4 sm:mb-5 text-center sm:text-left">
+        <h1 className="text-display-lg text-ink mb-2">
           SVGWire — Wire SVG assets into production-ready code.
         </h1>
         <p className="text-body-md text-body max-w-2xl">
@@ -68,10 +76,30 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
       </div>
 
       {/* Framework Tabs (Primary Navigation) */}
-      <nav className="flex flex-wrap gap-2 mb-8 border-b border-hairline pb-6" aria-label="Framework selector">
+      <nav className="flex flex-wrap gap-2 mb-5 border-b border-hairline pb-4" aria-label="Framework selector">
         {FRAMEWORKS.map(fw => {
           const isActive = options.framework === fw.id;
           const href = fw.id === 'react' ? '/' : `/${fw.slug}`;
+
+          // In batch/sprite modes, use buttons that update local state
+          // In single mode, use navigation links
+          if (activeMode !== 'single') {
+            return (
+              <button
+                key={fw.id}
+                onClick={() => handleFrameworkChange(fw.id)}
+                aria-current={isActive ? 'page' : undefined}
+                className={`rounded-full px-5 py-2 text-body-sm-strong transition-all duration-200 flex items-center gap-2 ${isActive
+                  ? 'bg-ink text-on-primary shadow-level-2 scale-[1.02]'
+                  : 'bg-canvas text-body border border-hairline shadow-level-1 hover:bg-canvas-soft-2 hover:text-ink hover:border-hairline-strong'
+                  }`}
+                id={`tab-${fw.id}`}
+              >
+                {fw.name}
+              </button>
+            );
+          }
+
           return (
             <a
               key={fw.id}
@@ -90,7 +118,7 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
       </nav>
 
       {/* Mode Selector */}
-      <div className="flex items-center justify-between mb-4 mt-8 border-b border-hairline pb-4">
+      <div className="flex items-center justify-between mb-3 border-b border-hairline pb-3">
         <ModeSelector activeMode={activeMode} frameworkSlug={currentFw.slug} />
       </div>
 
@@ -106,7 +134,7 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
       {activeMode === 'single' ? (
         <>
           {/* Main Split Pane */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-3">
             {/* Left: Input */}
             <InputPane
               value={rawSvg}
