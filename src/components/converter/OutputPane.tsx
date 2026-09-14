@@ -73,6 +73,7 @@ export function OutputPane({ code, language, outputSize, extension, componentNam
                   style={{
                     color: isActive ? '#ffffff' : 'rgba(200,200,200,0.85)',
                   }}
+                  aria-label={`Show ${labels[tab]}`}
                 >
                   {labels[tab]}
                 </button>
@@ -94,6 +95,7 @@ export function OutputPane({ code, language, outputSize, extension, componentNam
               onClick={handleCopy}
               className="flex items-center gap-1.5 px-2 py-1 rounded transition-colors duration-150 hover:bg-white/10"
               title="Copy to clipboard"
+              aria-label="Copy to clipboard"
               style={{ color: copied ? undefined : 'rgba(200,200,200,0.85)' }}
             >
               {copied ? (

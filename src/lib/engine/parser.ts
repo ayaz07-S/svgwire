@@ -102,9 +102,9 @@ export function parseSvg(rawSvg: string, options?: ParseOptions): ParsedSvg {
     if (idElements.length > 0) {
       const namePart = (options?.componentName || 'icon').toLowerCase().replace(/[^a-z0-9]/g, '');
       const hashPart = generateShortHash(trimmed);
-      const prefix = `svg2c-${namePart}-${hashPart}-`;
+      const prefix = `svgwire-${namePart}-${hashPart}-`;
       const idMap = new Map<string, string>(); // oldId -> newId
-      
+
       // 1. Rewrite IDs and build map
       idElements.forEach(el => {
         const oldId = el.id;
@@ -124,7 +124,7 @@ export function parseSvg(rawSvg: string, options?: ParseOptions): ParsedSvg {
               // Replace url(#oldId), url('#oldId'), url("#oldId")
               const urlRegex = new RegExp(`url\\(['"]?#${oldId}['"]?\\)`, 'g');
               val = val.replace(urlRegex, `url(#${newId})`);
-              
+
               // Replace exact #oldId (used in href, xlink:href)
               if (val === `#${oldId}`) {
                 val = `#${newId}`;
@@ -178,7 +178,7 @@ export function parseSvg(rawSvg: string, options?: ParseOptions): ParsedSvg {
       const precision = options.precision;
       const coordsAttrs = ['cx', 'cy', 'r', 'rx', 'ry', 'x', 'y', 'x1', 'x2', 'y1', 'y2', 'points', 'transform', 'width', 'height'];
       const elementsToTruncate = [svgEl, ...Array.from(allInnerElements)];
-      
+
       elementsToTruncate.forEach(el => {
         if (el.hasAttribute('d')) {
           el.setAttribute('d', truncatePath(el.getAttribute('d')!, precision));
@@ -188,7 +188,7 @@ export function parseSvg(rawSvg: string, options?: ParseOptions): ParsedSvg {
         }
         for (const attr of coordsAttrs) {
           if (el.hasAttribute(attr)) {
-             el.setAttribute(attr, truncateNumberStrings(el.getAttribute(attr)!, precision));
+            el.setAttribute(attr, truncateNumberStrings(el.getAttribute(attr)!, precision));
           }
         }
       });

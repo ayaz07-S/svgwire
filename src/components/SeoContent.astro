@@ -119,5 +119,19 @@ const blocks = seoBlocks[framework] ?? seoBlocks.react;
         </div>
       ))}
     </div>
+
+    {/* Related Converters */}
+    {['react', 'vue', 'svelte', 'react-native', 'tailwind-react'].includes(framework) && (
+      <div class="mt-16 pt-8 border-t border-hairline">
+        <h3 class="text-body-md-strong text-ink mb-4">Related Converters</h3>
+        <div class="flex flex-wrap gap-4">
+          {framework !== 'react' && <a href="/svg-to-react" class="text-body-sm text-link hover:text-link-deep transition-colors">SVG to React</a>}
+          {framework !== 'vue' && <a href="/svg-to-vue" class="text-body-sm text-link hover:text-link-deep transition-colors">SVG to Vue 3</a>}
+          {framework !== 'svelte' && <a href="/svg-to-svelte" class="text-body-sm text-link hover:text-link-deep transition-colors">SVG to Svelte 5</a>}
+          {framework !== 'react-native' && <a href="/svg-to-react-native" class="text-body-sm text-link hover:text-link-deep transition-colors">SVG to React Native</a>}
+          {framework !== 'tailwind-react' && <a href="/svg-to-tailwind-react" class="text-body-sm text-link hover:text-link-deep transition-colors">SVG to Tailwind React</a>}
+        </div>
+      </div>
+    )}
   </div>
 </section>

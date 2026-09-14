@@ -2,7 +2,7 @@
 **Project:** SVGWire
 **Platform:** Web (Client-Side Only)
 **Tech Stack:** Astro.js, React (Islands), Tailwind CSS v4, Lucide React
-**Deployment Target:** Cloudflare Pages (Static Export)
+**Deployment Target:** Cloudflare Workers + Static Assets
 
 ## 1. Executive Summary
 SVGWire is a lightning-fast, client-side developer tool that converts raw SVGs into framework-specific code (React, Vue, Svelte, React Native). It utilizes a "Universal Core" architecture: a single JavaScript DOMParser engine extracts SVG data and passes it to framework-specific template adapters. 

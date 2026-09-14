@@ -376,7 +376,7 @@ if (parseSvg) {
     assert.ok(!result.innerHTML.includes('id="grad1"'), 'Original ID grad1 should be scrambled');
     assert.ok(!result.innerHTML.includes('id="clip0"'), 'Original ID clip0 should be scrambled');
     // References should be updated
-    assert.ok(result.innerHTML.includes('svg2c-testicon-'), 'Should contain scrambled prefix');
+    assert.ok(result.innerHTML.includes('svgwire-testicon-'), 'Should contain scrambled prefix');
   });
 
   test('Parser - namespace removal from inner elements', () => {

@@ -35,6 +35,7 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
   }));
 
   const result = useMemo(() => {
+    if (typeof window === 'undefined') return null; // SSR: DOMParser unavailable
     if (!rawSvg.trim()) return null;
     return convert(rawSvg, options);
   }, [rawSvg, options]);
@@ -45,13 +46,13 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
 
   const currentFw = getFrameworkById(options.framework);
 
-  let h1Text = '';
+  let subtitleText = '';
   if (activeMode === 'single') {
-    h1Text = `SVG to ${currentFw.name} Component Converter`;
+    subtitleText = `Convert raw SVG code into production-ready ${currentFw.name}components instantly — processed entirely in your browser with zero backend calls.`;
   } else if (activeMode === 'batch') {
-    h1Text = "Batch SVG Converter — Convert Folders to React, Vue & Svelte in Parallel";
+    subtitleText = "Convert entire folders of SVGs to React, Vue & Svelte in parallel with zero backend calls.";
   } else if (activeMode === 'sprite') {
-    h1Text = "SVG Sprite Sheet Generator — Compile Symbols & Type-Safe TypeScript Unions";
+    subtitleText = "Compile SVG symbols into a unified sprite sheet with type-safe TypeScript unions.";
   }
 
   return (
@@ -59,10 +60,10 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
       {/* Header */}
       <div className="mb-6 sm:mb-8 text-center sm:text-left">
         <h1 className="text-display-lg text-ink mb-3">
-          {h1Text}
+          SVGWire — Wire SVG assets into production-ready code.
         </h1>
         <p className="text-body-md text-body max-w-2xl">
-          SVGWire — Wire SVG assets into production-ready code.
+          {subtitleText}
         </p>
       </div>
 
@@ -76,11 +77,10 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
               key={fw.id}
               href={href}
               aria-current={isActive ? 'page' : undefined}
-              className={`rounded-full px-5 py-2 text-body-sm-strong transition-all duration-200 flex items-center gap-2 ${
-                isActive
-                  ? 'bg-ink text-on-primary shadow-level-2 scale-[1.02]'
-                  : 'bg-canvas text-body border border-hairline shadow-level-1 hover:bg-canvas-soft-2 hover:text-ink hover:border-hairline-strong'
-              }`}
+              className={`rounded-full px-5 py-2 text-body-sm-strong transition-all duration-200 flex items-center gap-2 ${isActive
+                ? 'bg-ink text-on-primary shadow-level-2 scale-[1.02]'
+                : 'bg-canvas text-body border border-hairline shadow-level-1 hover:bg-canvas-soft-2 hover:text-ink hover:border-hairline-strong'
+                }`}
               id={`tab-${fw.id}`}
             >
               {fw.name}

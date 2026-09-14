@@ -8,27 +8,12 @@ const year = new Date().getFullYear();
   <div class="mx-auto grid max-w-[1400px] gap-12 md:grid-cols-4">
     <!-- Brand -->
     <div class="md:col-span-1">
-      <div class="flex items-center gap-2 mb-3">
-        <div class="flex h-7 w-7 items-center justify-center rounded-md bg-ink">
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-          </svg>
-        </div>
-        <span class="text-body-sm-strong text-ink">SVGWire</span>
+      <div class="mb-3 flex items-center h-[26px]">
+        <img src="/brand/svgwire-wordmark-light.svg" alt="SVGWire" class="h-full w-auto dark:hidden" />
+        <img src="/brand/svgwire-wordmark-dark.svg" alt="" aria-hidden="true" class="hidden h-full w-auto dark:block" />
       </div>
       <p class="text-body-sm text-mute">
-        Zero-latency, client-side SVG to component converter. No backend. No
-        tracking. Just code.
+        Client-side SVG to component converter. Your files never leave your browser.
       </p>
     </div>
 
@@ -68,6 +53,18 @@ const year = new Date().getFullYear();
             class="text-body-sm text-body hover:text-ink transition-colors"
             >SVG to Tailwind React</a>
         </li>
+        <li>
+          <a
+            href="/batch"
+            class="text-body-sm text-body hover:text-ink transition-colors"
+            >Batch Folder Converter</a>
+        </li>
+        <li>
+          <a
+            href="/sprite"
+            class="text-body-sm text-body hover:text-ink transition-colors"
+            >SVG Sprite Generator</a>
+        </li>
       </ul>
     </div>
 
@@ -105,7 +102,6 @@ const year = new Date().getFullYear();
         <li><span class="text-body-sm text-body">Astro</span></li>
         <li><span class="text-body-sm text-body">React Islands</span></li>
         <li><span class="text-body-sm text-body">Tailwind CSS v4</span></li>
-        <li><span class="text-body-sm text-body">Cloudflare workers</span></li>
       </ul>
     </div>
   </div>

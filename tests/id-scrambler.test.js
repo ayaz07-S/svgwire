@@ -47,8 +47,8 @@ test('ID collision scrambler', () => {
   assert.ok(!parsed2.outerHTML.includes('id="clip0_0"'));
 
   // Extract the generated prefix/id
-  const match1 = parsed1.outerHTML.match(/id="(svg2c-iconone-[^-]+-clip0_0)"/);
-  const match2 = parsed2.outerHTML.match(/id="(svg2c-icontwo-[^-]+-clip0_0)"/);
+  const match1 = parsed1.outerHTML.match(/id="(svgwire-iconone-[^-]+-clip0_0)"/);
+  const match2 = parsed2.outerHTML.match(/id="(svgwire-icontwo-[^-]+-clip0_0)"/);
 
   assert.ok(match1, 'IconOne should have generated ID');
   assert.ok(match2, 'IconTwo should have generated ID');
@@ -60,8 +60,8 @@ test('ID collision scrambler', () => {
   assert.ok(parsed2.outerHTML.includes(`clip-path="url(#${match2[1]})"`));
 
   // Verify mask references
-  const maskMatch1 = parsed1.outerHTML.match(/id="(svg2c-iconone-[^-]+-mask0_0)"/);
-  const maskMatch2 = parsed2.outerHTML.match(/id="(svg2c-icontwo-[^-]+-mask0_0)"/);
+  const maskMatch1 = parsed1.outerHTML.match(/id="(svgwire-iconone-[^-]+-mask0_0)"/);
+  const maskMatch2 = parsed2.outerHTML.match(/id="(svgwire-icontwo-[^-]+-mask0_0)"/);
 
   assert.ok(parsed1.outerHTML.includes(`mask="url(#${maskMatch1[1]})"`));
   assert.ok(parsed2.outerHTML.includes(`mask="url(#${maskMatch2[1]})"`));
