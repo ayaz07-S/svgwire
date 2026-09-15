@@ -118,8 +118,66 @@ export function PreviewSandbox({ svgContent, isValid }: PreviewSandboxProps) {
     if (!isValid || !svgContent.trim()) return null;
     const trimmed = svgContent.trim();
     if (!trimmed.startsWith('<svg') && !trimmed.startsWith('<?xml')) return null;
-    return trimmed;
-  }, [svgContent, isValid]);
+
+    // Determine the explicit preview foreground color. We inject this directly
+    // onto the root <svg> element so that `currentColor` always resolves to the
+    // preview-intended value, independent of the app's light/dark theme and any
+    // CSS cascade from ancestor elements.
+    const previewColor = previewBg === 'dark' ? '#ffffff' : '#171717';
+
+    let result = trimmed;
+
+    if (previewBg === 'dark') {
+      // On dark background: make dark-colored elements white so they are visible.
+      // 1. Replace hardcoded dark colors in fill/stroke SVG attributes
+      result = result.replace(
+        /((?:fill|stroke)\s*=\s*")(#171717|#000000|#000|black)(")/gi,
+        `$1${previewColor}$3`
+      );
+      // 2. Replace dark colors in CSS property values inside style="..." attributes.
+      //    Matches fill/stroke CSS properties preceded by a quote, semicolon, or whitespace.
+      result = result.replace(
+        /(?<=["';\s])((?:fill|stroke)\s*:\s*)(#171717|#000000|#000|black)/gi,
+        `$1${previewColor}`
+      );
+    } else {
+      // On light/checker background: make white-colored elements dark so they are visible.
+      // 1. Replace hardcoded white colors in fill/stroke SVG attributes
+      result = result.replace(
+        /((?:fill|stroke)\s*=\s*")(#ffffff|#fff|white)(")/gi,
+        `$1${previewColor}$3`
+      );
+      // 2. Replace white colors in CSS property values inside style="..." attributes
+      result = result.replace(
+        /(?<=["';\s])((?:fill|stroke)\s*:\s*)(#ffffff|#fff|white)/gi,
+        `$1${previewColor}`
+      );
+    }
+
+    // Inject the preview foreground color directly onto the root <svg> element.
+    // This ensures `currentColor` resolves to the correct value regardless of
+    // what the page's CSS cascade provides. We use a CSS `color` property via the
+    // style attribute on the SVG itself (highest-priority short of `!important`).
+    // Preserve any existing style attribute by prepending to it.
+    if (result.includes('<svg')) {
+      result = result.replace(
+        /<svg(\s[^>]*)?>/i,
+        (match, attrs = '') => {
+          // If there's already a style attribute on the svg, prepend our color
+          if (/\bstyle\s*=/i.test(attrs)) {
+            return match.replace(
+              /(\bstyle\s*=\s*")/i,
+              `$1color:${previewColor};`
+            );
+          }
+          // Otherwise add a new style attribute
+          return `<svg${attrs} style="color:${previewColor}">`;
+        }
+      );
+    }
+
+    return result;
+  }, [svgContent, isValid, previewBg]);
 
   const OPTIONS: { id: PreviewBg; label: string; icon: React.ReactNode }[] = [
     { id: 'light',   label: 'Light',        icon: <LightIcon /> },

@@ -59,18 +59,31 @@ export function ThemeToggle() {
         const dark = e.newValue === 'dark';
         setIsDark(dark);
         document.documentElement.classList.toggle('dark', dark);
+        const favicon = document.getElementById('favicon') as HTMLLinkElement | null;
+        if (favicon) {
+          favicon.setAttribute('href', dark ? '/favicon-dark.svg' : '/favicon-light.svg');
+        }
       }
     };
     window.addEventListener('storage', handleStorage);
     return () => window.removeEventListener('storage', handleStorage);
   }, []);
 
+  const applyTheme = useCallback((dark: boolean) => {
+    document.documentElement.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    // Update the favicon to match the app theme (see BaseLayout.astro for the element).
+    const favicon = document.getElementById('favicon') as HTMLLinkElement | null;
+    if (favicon) {
+      favicon.setAttribute('href', dark ? '/favicon-dark.svg' : '/favicon-light.svg');
+    }
+  }, []);
+
   const toggle = useCallback(() => {
     const next = !isDark;
     setIsDark(next);
-    document.documentElement.classList.toggle('dark', next);
-    localStorage.setItem('theme', next ? 'dark' : 'light');
-  }, [isDark]);
+    applyTheme(next);
+  }, [isDark, applyTheme]);
 
   return (
     <button

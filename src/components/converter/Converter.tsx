@@ -4,7 +4,7 @@
  * Manages all converter state and orchestrates sub-components.
  */
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect, useLayoutEffect } from 'react';
 import { convert, DEFAULT_OPTIONS, getDefaultsForFramework, type ConversionOptions } from '../../lib/templates/index';
 import { FRAMEWORKS, getFrameworkById } from '../../lib/frameworks';
 import { InputPane } from './InputPane';
@@ -14,6 +14,8 @@ import { OptionsPanel } from './OptionsPanel';
 import { ActionBar } from './ActionBar';
 import { ModeSelector, type ConverterMode } from './ModeSelector';
 import { BatchPane } from './BatchPane';
+
+import { getSessionFramework, setSessionFramework } from '../../lib/frameworkSession';
 
 interface ConverterProps {
   defaultFramework: string;
@@ -28,11 +30,37 @@ const SAMPLE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="2
 
 export function Converter({ defaultFramework, activeMode }: ConverterProps) {
   const [rawSvg, setRawSvg] = useState(SAMPLE_SVG);
+
+  // Initial framework always matches SSR (defaultFramework).
+  // For Batch/Sprite, the persisted choice from sessionStorage is
+  // applied in a useLayoutEffect (before paint) so there is no flash.
+  const initialFramework = defaultFramework;
+
   const [options, setOptions] = useState<ConversionOptions>(() => ({
     ...DEFAULT_OPTIONS,
-    framework: defaultFramework,
-    ...getDefaultsForFramework(defaultFramework),
+    framework: initialFramework,
+    ...getDefaultsForFramework(initialFramework),
   }));
+
+  // After hydration, read the persisted framework from sessionStorage
+  // for batch/sprite modes BEFORE the browser paints (useLayoutEffect).
+  // Single mode framework is derived from the page route SSR default.
+  useLayoutEffect(() => {
+    if (activeMode === 'single') return;
+    const stored = getSessionFramework();
+    if (stored && stored !== options.framework) {
+      setOptions(prev => ({
+        ...prev,
+        framework: stored,
+        ...getDefaultsForFramework(stored),
+      }));
+    }
+  }, [activeMode]);
+
+  // Persist framework selection changes to sessionStorage across all modes
+  useEffect(() => {
+    setSessionFramework(options.framework);
+  }, [options.framework]);
 
   const result = useMemo(() => {
     if (typeof window === 'undefined') return null; // SSR: DOMParser unavailable
@@ -82,7 +110,8 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
           const href = fw.id === 'react' ? '/' : `/${fw.slug}`;
 
           // In batch/sprite modes, use buttons that update local state
-          // In single mode, use navigation links
+          // In single mode, use navigation links that persist framework to sessionStorage
+          // before navigating, so batch/sprite can pick up the selection immediately.
           if (activeMode !== 'single') {
             return (
               <button
@@ -105,6 +134,9 @@ export function Converter({ defaultFramework, activeMode }: ConverterProps) {
               key={fw.id}
               href={href}
               aria-current={isActive ? 'page' : undefined}
+              // Write the target framework to sessionStorage before navigating so that
+              // batch/sprite pages immediately pick up the correct framework selection.
+              onClick={() => setSessionFramework(fw.id)}
               className={`rounded-full px-5 py-2 text-body-sm-strong transition-all duration-200 flex items-center gap-2 ${isActive
                 ? 'bg-ink text-on-primary shadow-level-2 scale-[1.02]'
                 : 'bg-canvas text-body border border-hairline shadow-level-1 hover:bg-canvas-soft-2 hover:text-ink hover:border-hairline-strong'

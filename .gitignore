@@ -44,3 +44,8 @@ coverage/
 .vercel/
 .netlify/
 .wrangler/
+
+#Agents MD 
+CLAUDE.md
+AGENTS.md
+PRD.md
