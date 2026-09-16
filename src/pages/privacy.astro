@@ -1,19 +1,20 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-const effectiveDate = 'September 14, 2026';
+const effectiveDate = "September 16, 2026";
 ---
 
 <BaseLayout
   title="Privacy Policy — SVGWire"
-  description="SVGWire Privacy Policy. Read how SVGWire processes all SVG files locally in your browser with zero server uploads, no cookies, and no tracking."
+  description="SVGWire Privacy Policy. Read how SVGWire processes SVG files locally in your browser with zero server uploads, no user accounts, and no tracking."
   canonical="https://svgwire.com/privacy"
 >
   <div class="mx-auto max-w-[860px] px-6 py-16 sm:py-20">
     <!-- Header -->
     <div class="mb-12 border-b border-hairline pb-8">
-      <p class="text-caption-mono text-mute uppercase tracking-wider mb-3">Legal</p>
-      <h1 class="text-display-md text-ink mb-3 font-semibold">Privacy Policy</h1>
+      <h1 class="text-display-md text-ink mb-3 font-semibold">
+        Privacy Policy
+      </h1>
       <p class="text-body-sm text-mute">Effective Date: {effectiveDate}</p>
     </div>
 
@@ -21,7 +22,8 @@ const effectiveDate = 'September 14, 2026';
     <div class="mb-12 rounded-xl border border-hairline bg-canvas-soft p-6">
       <h2 class="text-body-md-strong text-ink mb-2">Core Privacy Guarantee</h2>
       <p class="text-body-md text-body leading-relaxed">
-        Your SVGs are processed locally in your browser. Files are never uploaded to a server.
+        SVG files uploaded, pasted, or dropped into SVGWire are processed
+        locally in your browser and are not uploaded to SVGWire servers.
       </p>
     </div>
 
@@ -31,77 +33,164 @@ const effectiveDate = 'September 14, 2026';
       <section>
         <h2 class="text-display-sm text-ink mb-3 font-semibold">1. Overview</h2>
         <p>
-          SVGWire ("we", "us", or "our") operates the web utility located at <a href="https://svgwire.com" class="text-ink underline hover:text-mute">https://svgwire.com</a>. This Privacy Policy explains how information is handled when you access and use our website and conversion tools.
+          SVGWire ("we", "us", or "our") operates the web utility located at <a
+            href="https://svgwire.com"
+            class="text-ink underline hover:text-mute">https://svgwire.com</a
+          >. This Privacy Policy explains how information is handled when you
+          access and use our website and conversion tools.
         </p>
         <p class="mt-3">
-          We are committed to user privacy. SVGWire is designed from the ground up as a client-side web application, meaning vector processing, code generation, sprite compilation, and batch folder bundling take place within your local browser environment.
+          SVGWire is designed as a client-side web application. Vector
+          processing, code generation, sprite compilation, and batch folder
+          bundling take place within your local web browser environment.
         </p>
       </section>
 
       <!-- 2. Information Processed -->
       <section>
-        <h2 class="text-display-sm text-ink mb-3 font-semibold">2. Information Processed</h2>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">
+          2. Information Processed
+        </h2>
         <p>
-          SVGWire does not require user registration, account creation, or login credentials to access any feature. We do not request or collect personal identification information such as your name, email address, physical address, phone number, or payment details.
+          SVGWire does not require user registration, account creation, or login
+          credentials to access any feature. We do not intentionally request or
+          collect personal identification information such as your name, email
+          address, physical address, phone number, or payment details to use the
+          converter.
+        </p>
+        <p class="mt-3">
+          As described in Section 6, standard technical request information
+          (such as your IP address and web browser user-agent) is processed by
+          our infrastructure providers (Cloudflare and Google Fonts) when your
+          browser requests web assets.
         </p>
       </section>
 
       <!-- 3. SVG & File Processing -->
       <section>
-        <h2 class="text-display-sm text-ink mb-3 font-semibold">3. SVG & File Processing</h2>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">
+          3. SVG & File Processing
+        </h2>
         <p>
-          When you paste raw SVG code, upload SVG files, or drop SVG directories into SVGWire:
+          When you paste raw SVG code, upload SVG files, or drop SVG directories
+          into SVGWire:
         </p>
         <ul class="mt-3 list-disc pl-6 space-y-2">
-          <li><strong>Local Execution:</strong> All parsing, transformations, DOM manipulation, code generation, and file compression are performed locally on your device using JavaScript and browser APIs (such as DOMParser and JSZip).</li>
-          <li><strong>No File Uploads:</strong> Content input into the tool is never sent to our servers or transmitted across external networks.</li>
-          <li><strong>No Content Storage:</strong> We do not store, view, index, or retain copies of your SVG source files or generated component output.</li>
+          <li>
+            <strong>Local Execution:</strong> All parsing, transformations, DOM manipulation,
+            code generation (React, Vue 3, Svelte 5, React Native, and Tailwind CSS
+            formats), sprite compilation, and ZIP archive creation are performed locally
+            on your device using JavaScript and browser APIs (such as DOMParser and
+            JSZip).
+          </li>
+          <li>
+            <strong>No File Uploads:</strong> SVG files and code input into the converter
+            are not uploaded to or stored on SVGWire servers.
+          </li>
+          <li>
+            <strong>No Remote Database:</strong> We do not maintain a remote database
+            or cloud storage of your SVG source files or generated component output.
+          </li>
         </ul>
       </section>
 
-      <!-- 4. Local Storage -->
+      <!-- 4. Local & Session Storage -->
       <section>
-        <h2 class="text-display-sm text-ink mb-3 font-semibold">4. Local Storage</h2>
-        <p>
-          SVGWire does not set or use HTTP cookies.
-        </p>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">
+          4. Local & Session Storage
+        </h2>
+        <p>SVGWire does not set or use HTTP cookies.</p>
         <p class="mt-3">
-          We utilize your web browser's <code>localStorage</code> API solely to preserve basic user interface preferences across visits:
+          We utilize your web browser's storage APIs solely to preserve basic
+          user interface preferences across your visits:
         </p>
         <ul class="mt-3 list-disc pl-6 space-y-2">
-          <li><code>theme</code>: Remembers your selected color theme mode (dark or light).</li>
-          <li><code>svgwire-preview-bg</code>: Remembers your chosen preview canvas background (light, dark, or transparent checkerboard).</li>
+          <li>
+            <code>localStorage.getItem('theme')</code>: Remembers your selected
+            interface color theme (light or dark).
+          </li>
+          <li>
+            <code>localStorage.getItem('svgwire-preview-bg')</code>: Remembers
+            your chosen canvas preview background (light, dark, or transparent
+            checkerboard).
+          </li>
+          <li>
+            <code>sessionStorage.getItem('svgwire-framework')</code>: Preserves
+            your active component framework selection when navigating between
+            converter views during a browsing session.
+          </li>
         </ul>
         <p class="mt-3">
-          This data remains stored locally on your device and can be cleared at any time through your browser settings.
+          This data remains stored locally on your device and can be cleared at
+          any time through your web browser controls.
         </p>
       </section>
 
       <!-- 5. Analytics & Tracking -->
       <section>
-        <h2 class="text-display-sm text-ink mb-3 font-semibold">5. Analytics & Tracking</h2>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">
+          5. Analytics & Tracking
+        </h2>
         <p>
-          SVGWire does not employ third-party behavioral analytics packages, session recording tools, advertising networks, or user-tracking scripts (such as Google Analytics or social media pixel beacons).
+          SVGWire does not intentionally use third-party behavioral analytics
+          packages (such as Google Analytics), session recording tools,
+          advertising networks, or social media tracking pixels.
         </p>
       </section>
 
-      <!-- 6. Third-Party Services -->
+      <!-- 6. Third-Party Services & Hosting -->
       <section>
-        <h2 class="text-display-sm text-ink mb-3 font-semibold">6. Third-Party Services & Hosting</h2>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">
+          6. Third-Party Services & Hosting
+        </h2>
         <p>
-          Our application relies on a minimal set of third-party infrastructure providers to render and deliver web pages:
+          Our application relies on a minimal set of third-party infrastructure
+          providers to deliver web pages and stylesheets:
         </p>
         <ul class="mt-3 list-disc pl-6 space-y-2">
-          <li><strong>Google Fonts:</strong> Web typography stylesheets are requested from Google Fonts (<code>fonts.googleapis.com</code> and <code>fonts.gstatic.com</code>). Serving typography via Google Fonts may involve standard network requests containing your IP address and user-agent string as governed by Google's Privacy Policy.</li>
-          <li><strong>Cloudflare Infrastructure:</strong> SVGWire's static web pages are delivered via Cloudflare edge infrastructure. Cloudflare may process standard network request headers (including IP address and user-agent) at the network layer for CDN delivery, security mitigation, and service stability.</li>
+          <li>
+            <strong>Google Fonts:</strong> Web typography stylesheets are requested
+            from Google Fonts (<code>fonts.googleapis.com</code> and <code
+              >fonts.gstatic.com</code
+            >). Serving typography via Google Fonts involves standard technical
+            network requests containing your IP address and user-agent string as
+            governed by <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-ink underline hover:text-mute"
+              >Google's Privacy Policy</a
+            >.
+          </li>
+          <li>
+            <strong>Cloudflare Infrastructure:</strong> SVGWire's static web pages
+            and assets are delivered via Cloudflare edge infrastructure. Cloudflare
+            may process standard network request headers (including IP address and
+            user-agent) at the network layer for CDN delivery, DDoS protection, security
+            mitigation, and service stability as governed by <a
+              href="https://www.cloudflare.com/privacypolicy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-ink underline hover:text-mute"
+              >Cloudflare's Privacy Policy</a
+            >.
+          </li>
         </ul>
+        <p class="mt-3">
+          Your SVG files and code inputs are never transmitted to Google Fonts
+          or Cloudflare as part of SVG conversion.
+        </p>
       </section>
 
       <!-- 7. Data Retention -->
       <section>
-        <h2 class="text-display-sm text-ink mb-3 font-semibold">7. Data Retention</h2>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">
+          7. Data Retention
+        </h2>
         <p>
-          Because SVGWire does not collect, store, or transmit user data or uploaded SVG files to remote servers, there is no remote database or server storage containing user data to retain.
+          Because SVGWire does not maintain a remote database and does not
+          upload user SVG files to SVGWire servers, we do not retain uploaded
+          SVG files or converted code output on our servers.
         </p>
       </section>
 
@@ -109,36 +198,59 @@ const effectiveDate = 'September 14, 2026';
       <section>
         <h2 class="text-display-sm text-ink mb-3 font-semibold">8. Security</h2>
         <p>
-          SVGWire is served exclusively over HTTPS encryption to ensure web traffic integrity. Because all file processing takes place client-side within your browser's security sandbox, your data security remains under your direct control on your personal device.
+          SVGWire is served exclusively over encrypted HTTPS connections.
+          Client-side local browser processing serves as a key privacy and
+          security design measure so your file contents remain on your device.
         </p>
       </section>
 
       <!-- 9. Children's Privacy -->
       <section>
-        <h2 class="text-display-sm text-ink mb-3 font-semibold">9. Children's Privacy</h2>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">
+          9. Children's Privacy
+        </h2>
         <p>
-          SVGWire is a general-audience developer utility. We do not knowingly solicit or collect information from children under the age of 13.
+          SVGWire is a general-audience developer utility. We do not knowingly
+          solicit or collect personal information from children.
         </p>
       </section>
 
       <!-- 10. Changes to This Policy -->
       <section>
-        <h2 class="text-display-sm text-ink mb-3 font-semibold">10. Changes to This Policy</h2>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">
+          10. Changes to This Policy
+        </h2>
         <p>
-          We may update this Privacy Policy from time to time to reflect updates in functionality or legal requirements. Any modifications will be posted directly on this page with an updated Effective Date.
+          We may update this Privacy Policy from time to time to reflect updates
+          in functionality or legal requirements. Any modifications will be
+          posted directly on this page with an updated Effective Date.
         </p>
       </section>
 
       <!-- 11. Contact Information -->
       <section>
-        <h2 class="text-display-sm text-ink mb-3 font-semibold">11. Contact Information</h2>
+        <h2 class="text-display-sm text-ink mb-3 font-semibold">
+          11. Contact Information
+        </h2>
         <p>
-          If you have questions or concerns regarding this Privacy Policy or SVGWire, please contact us at:
+          If you have questions regarding this Privacy Policy or SVGWire, please
+          contact us at:
         </p>
-        <div class="mt-4 rounded-lg border border-hairline bg-canvas-soft p-4 font-mono text-body-sm">
-          <p>Entity: [INSERT LEGAL ENTITY / COMPANY NAME]</p>
-          <p>Email: [INSERT CONTACT EMAIL ADDRESS]</p>
-          <p>Website: https://svgwire.com</p>
+        <div
+          class="mt-4 rounded-lg border border-hairline bg-canvas-soft p-4 font-mono text-body-sm"
+        >
+          <p>
+            Email: <a
+              href="mailto:contact@svgwire.com"
+              class="text-ink underline hover:text-mute">contact@svgwire.com</a
+            >
+          </p>
+          <p>
+            Website: <a
+              href="https://svgwire.com"
+              class="text-ink underline hover:text-mute">https://svgwire.com</a
+            >
+          </p>
         </div>
       </section>
     </div>

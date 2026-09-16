@@ -31,7 +31,7 @@ function sanitizeForPreview(svgContent, isValid, previewBg) {
       `$1${previewColor}$3`
     );
     result = result.replace(
-      /(style\s*=\s*"[^"]*(?:fill|stroke)\s*:\s*)(#171717|#000000|#000|black)/gi,
+      /(?<=["';\s])((?:fill|stroke)\s*:\s*)(#171717|#000000|#000|black)/gi,
       `$1${previewColor}`
     );
   } else {
@@ -40,7 +40,7 @@ function sanitizeForPreview(svgContent, isValid, previewBg) {
       `$1${previewColor}$3`
     );
     result = result.replace(
-      /(style\s*=\s*"[^"]*(?:fill|stroke)\s*:\s*)(#ffffff|#fff|white)/gi,
+      /(?<=["';\s])((?:fill|stroke)\s*:\s*)(#ffffff|#fff|white)/gi,
       `$1${previewColor}`
     );
   }
