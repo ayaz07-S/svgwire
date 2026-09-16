@@ -17,9 +17,29 @@ interface Props {
 
 const { frameworkId } = Astro.props;
 const fw = getFrameworkBySlug(Astro.params.framework!);
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {
+      '@type': 'ListItem',
+      'position': 1,
+      'name': 'Home',
+      'item': 'https://svgwire.com/',
+    },
+    {
+      '@type': 'ListItem',
+      'position': 2,
+      'name': fw.name,
+      'item': `https://svgwire.com/${fw.slug}`,
+    },
+  ],
+};
 ---
 
 <BaseLayout title={fw.title} description={fw.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <Converter client:load defaultFramework={frameworkId} activeMode="single" />
   <SeoContent framework={frameworkId} />
 </BaseLayout>

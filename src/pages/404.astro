@@ -1,0 +1,315 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="404: Page Not Found — SVGWire"
+  description="The vector path or page you are looking for could not be found on SVGWire."
+>
+  <div class="relative overflow-hidden py-16 sm:py-24">
+    <!-- Atmospheric Background Gradient Glow -->
+    <div
+      class="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl opacity-30 dark:opacity-20"
+      aria-hidden="true"
+    >
+      <div
+        class="h-[380px] w-[700px] bg-gradient-to-r from-[var(--color-grad-develop-start)] via-[var(--color-grad-preview-start)] to-[var(--color-grad-ship-start)] rounded-full"
+      ></div>
+    </div>
+
+    <div class="mx-auto max-w-[1000px] px-6">
+      <!-- Top Badge -->
+      <div class="flex justify-center mb-6">
+        <div
+          class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas/80 backdrop-blur-md px-3.5 py-1 text-caption-mono font-medium text-mute shadow-level-1"
+        >
+          <span class="h-2 w-2 rounded-full bg-error animate-pulse"></span>
+          ERR_404_VECTOR_NOT_FOUND
+        </div>
+      </div>
+
+      <!-- Main Visual & Headline Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h1
+          class="text-[72px] sm:text-[96px] font-semibold leading-none tracking-[-0.05em] text-ink mb-2 select-none"
+        >
+          4<span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-grad-develop-start)] via-[var(--color-violet)] to-[var(--color-highlight-pink)]">0</span>4
+        </h1>
+        <h2 class="text-display-md sm:text-display-lg text-ink font-semibold mb-4">
+          Vector path not found.
+        </h2>
+        <p class="text-body-lg text-body leading-relaxed">
+          The requested route leads outside the viewbox canvas. The file may have been moved, renamed, or never existed in the matrix.
+        </p>
+      </div>
+
+      <!-- Interactive Broken Wireframe Canvas Widget -->
+      <div
+        class="mb-14 rounded-xl border border-hairline bg-canvas p-6 sm:p-8 shadow-level-3 relative overflow-hidden"
+      >
+        <!-- Canvas Header Bar -->
+        <div class="flex items-center justify-between border-b border-hairline pb-4 mb-6 text-caption-mono text-mute">
+          <div class="flex items-center gap-2">
+            <span class="inline-block h-3 w-3 rounded-full bg-error/20 border border-error"></span>
+            <span class="inline-block h-3 w-3 rounded-full bg-warning/20 border border-warning"></span>
+            <span class="inline-block h-3 w-3 rounded-full bg-success/20 border border-success"></span>
+            <span class="ml-2 font-mono text-ink font-medium">canvas_404.svg</span>
+          </div>
+          <div class="hidden sm:flex items-center gap-4">
+            <span>viewBox="0 0 404 200"</span>
+            <span class="text-error font-medium">status: broken_path</span>
+          </div>
+        </div>
+
+        <!-- Wireframe Art Canvas Grid -->
+        <div class="relative min-h-[220px] sm:min-h-[260px] rounded-lg border border-hairline bg-canvas-soft-2 p-4 flex items-center justify-center overflow-hidden group">
+          <!-- Background Grid Pattern -->
+          <svg class="absolute inset-0 h-full w-full stroke-hairline opacity-60" width="100%" height="100%">
+            <defs>
+              <pattern id="grid-pattern-404" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-pattern-404)" />
+          </svg>
+
+          <!-- SVG Wireframe Graphic -->
+          <svg
+            viewBox="0 0 404 180"
+            class="w-full max-w-[500px] h-auto relative z-10 overflow-visible"
+            aria-label="Interactive broken SVG wireframe diagram"
+          >
+            <!-- Guide Lines -->
+            <line x1="20" y1="90" x2="384" y2="90" stroke="currentColor" class="text-hairline-strong stroke-[1]" stroke-dasharray="4 4" />
+            <line x1="202" y1="10" x2="202" y2="170" stroke="currentColor" class="text-hairline-strong stroke-[1]" stroke-dasharray="4 4" />
+
+            <!-- Broken Path (Disconnected dashed vector) -->
+            <path
+              d="M 40 140 C 90 20, 150 160, 202 90"
+              fill="none"
+              stroke="url(#wireframe-gradient)"
+              stroke-width="3"
+              stroke-linecap="round"
+              class="animate-pulse"
+            />
+            <path
+              d="M 240 90 C 270 30, 330 150, 364 40"
+              fill="none"
+              stroke="var(--color-error)"
+              stroke-width="3"
+              stroke-dasharray="6 6"
+              stroke-linecap="round"
+            />
+
+            <!-- Missing Connection Gap Indicator -->
+            <g class="cursor-pointer group/node" id="gap-node">
+              <circle cx="202" cy="90" r="14" fill="var(--color-error-soft)" opacity="0.4" class="animate-ping" />
+              <circle cx="202" cy="90" r="6" fill="var(--color-error)" />
+              <circle cx="202" cy="90" r="10" fill="none" stroke="var(--color-error)" stroke-width="1.5" />
+            </g>
+
+            <!-- Control Anchors / Nodes -->
+            <g class="cursor-pointer">
+              <!-- Node 1 -->
+              <rect x="36" y="136" width="8" height="8" fill="var(--color-ink)" class="transition-transform hover:scale-150 origin-center" />
+              <line x1="40" y1="140" x2="70" y2="80" stroke="var(--color-mute)" stroke-width="1" stroke-dasharray="2 2" />
+              <circle cx="70" cy="80" r="4" fill="var(--color-link)" />
+              
+              <!-- Node 2 (Broken Right) -->
+              <rect x="360" y="36" width="8" height="8" fill="var(--color-error)" class="transition-transform hover:scale-150 origin-center" />
+              <line x1="364" y1="40" x2="310" y2="70" stroke="var(--color-error)" stroke-width="1" stroke-dasharray="2 2" />
+              <circle cx="310" cy="70" r="4" fill="var(--color-error)" />
+            </g>
+
+            <!-- Text Overlay inside Canvas -->
+            <text x="202" y="130" text-anchor="middle" font-family="Geist Mono, monospace" font-size="11" fill="var(--color-error)" font-weight="500">
+              [MISSING_PATH_SEGMENT]
+            </text>
+
+            <defs>
+              <linearGradient id="wireframe-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="var(--color-grad-develop-start)" />
+                <stop offset="100%" stop-color="var(--color-violet)" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <!-- Interactive Floating Code Badge -->
+          <div class="absolute bottom-3 left-3 sm:left-4 right-3 sm:right-4 flex flex-col sm:flex-row items-center justify-between gap-2 rounded-lg border border-hairline bg-canvas/90 backdrop-blur px-3 py-2 text-caption-mono text-body shadow-level-1">
+            <div class="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
+              <span class="text-error font-semibold">&lt;SVGError&gt;</span>
+              <span>path="<span class="text-ink font-mono" id="current-url-display">/unknown-route</span>"</span>
+            </div>
+            <button
+              type="button"
+              id="copy-404-snippet"
+              class="inline-flex items-center gap-1.5 rounded bg-canvas-soft hover:bg-canvas-soft-2 border border-hairline px-2.5 py-1 text-caption-mono text-ink transition-colors cursor-pointer shrink-0"
+              title="Copy component code"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span id="copy-snippet-text">Copy Code</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Primary Action Button Row -->
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-ink text-on-primary px-7 py-3 text-button-lg font-medium shadow-level-2 hover:opacity-90 transition-all active:scale-[0.98]"
+            id="btn-return-home"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Return to Converter
+          </a>
+          <a
+            href="/sprite"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-hairline bg-canvas hover:bg-canvas-soft-2 px-6 py-3 text-button-lg text-ink font-medium transition-all active:scale-[0.98]"
+            id="btn-goto-sprite"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+              <circle cx="9" cy="9" r="2"></circle>
+              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+            </svg>
+            Sprite Generator
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Navigation Destinations Grid -->
+      <div class="mb-16">
+        <h3 class="text-caption-mono text-mute uppercase tracking-wider mb-6 text-center">
+          Looking for something specific?
+        </h3>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Card 1: Single Converter -->
+          <a
+            href="/"
+            class="group rounded-xl border border-hairline bg-canvas p-5 shadow-level-1 hover:shadow-level-3 hover:border-hairline-strong transition-all duration-200"
+          >
+            <div class="flex items-center justify-between mb-3">
+              <div class="h-9 w-9 rounded-lg border border-hairline bg-canvas-soft-2 flex items-center justify-center text-ink group-hover:bg-ink group-hover:text-on-primary transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <span class="text-caption-mono text-mute group-hover:text-ink transition-colors">&rarr;</span>
+            </div>
+            <h4 class="text-body-md-strong text-ink mb-1 group-hover:text-link transition-colors">
+              SVG Converter
+            </h4>
+            <p class="text-body-sm text-mute">
+              Convert raw SVG into React, Vue, Svelte, or React Native components.
+            </p>
+          </a>
+
+          <!-- Card 2: Sprite Sheet Generator -->
+          <a
+            href="/sprite"
+            class="group rounded-xl border border-hairline bg-canvas p-5 shadow-level-1 hover:shadow-level-3 hover:border-hairline-strong transition-all duration-200"
+          >
+            <div class="flex items-center justify-between mb-3">
+              <div class="h-9 w-9 rounded-lg border border-hairline bg-canvas-soft-2 flex items-center justify-center text-ink group-hover:bg-ink group-hover:text-on-primary transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+              </div>
+              <span class="text-caption-mono text-mute group-hover:text-ink transition-colors">&rarr;</span>
+            </div>
+            <h4 class="text-body-md-strong text-ink mb-1 group-hover:text-link transition-colors">
+              Sprite Generator
+            </h4>
+            <p class="text-body-sm text-mute">
+              Bundle multiple SVGs into a single clean &lt;svg&gt; sprite symbol sheet.
+            </p>
+          </a>
+
+          <!-- Card 3: Batch Converter -->
+          <a
+            href="/batch"
+            class="group rounded-xl border border-hairline bg-canvas p-5 shadow-level-1 hover:shadow-level-3 hover:border-hairline-strong transition-all duration-200"
+          >
+            <div class="flex items-center justify-between mb-3">
+              <div class="h-9 w-9 rounded-lg border border-hairline bg-canvas-soft-2 flex items-center justify-center text-ink group-hover:bg-ink group-hover:text-on-primary transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+              </div>
+              <span class="text-caption-mono text-mute group-hover:text-ink transition-colors">&rarr;</span>
+            </div>
+            <h4 class="text-body-md-strong text-ink mb-1 group-hover:text-link transition-colors">
+              Batch Converter
+            </h4>
+            <p class="text-body-sm text-mute">
+              Transform dozens of SVG icons into formatted components simultaneously.
+            </p>
+          </a>
+
+          <!-- Card 4: Contact & FAQ -->
+          <a
+            href="/contact"
+            class="group rounded-xl border border-hairline bg-canvas p-5 shadow-level-1 hover:shadow-level-3 hover:border-hairline-strong transition-all duration-200"
+          >
+            <div class="flex items-center justify-between mb-3">
+              <div class="h-9 w-9 rounded-lg border border-hairline bg-canvas-soft-2 flex items-center justify-center text-ink group-hover:bg-ink group-hover:text-on-primary transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <span class="text-caption-mono text-mute group-hover:text-ink transition-colors">&rarr;</span>
+            </div>
+            <h4 class="text-body-md-strong text-ink mb-1 group-hover:text-link transition-colors">
+              Support & FAQ
+            </h4>
+            <p class="text-body-sm text-mute">
+              Get in touch, report bugs, or ask questions about SVG transformations.
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Dynamically display the current missing URL path in the visual canvas tag
+    if (typeof window !== 'undefined') {
+      const displayEl = document.getElementById('current-url-display');
+      if (displayEl) {
+        displayEl.textContent = window.location.pathname || '/unknown-route';
+      }
+
+      const copyBtn = document.getElementById('copy-404-snippet');
+      const copyText = document.getElementById('copy-snippet-text');
+
+      if (copyBtn && copyText) {
+        copyBtn.addEventListener('click', async () => {
+          const codeToCopy = `<SVGError status={404} path="${window.location.pathname}" message="Vector path lost in cyberspace" />`;
+          try {
+            await navigator.clipboard.writeText(codeToCopy);
+            copyText.textContent = 'Copied!';
+            copyBtn.classList.add('text-success', 'border-success');
+            setTimeout(() => {
+              copyText.textContent = 'Copy Code';
+              copyBtn.classList.remove('text-success', 'border-success');
+            }, 2000);
+          } catch (err) {
+            console.error('Failed to copy code snippet:', err);
+          }
+        });
+      }
+    }
+  </script>
+</BaseLayout>

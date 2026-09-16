@@ -7,10 +7,12 @@ interface Props {
   title: string;
   description: string;
   canonical?: string;
+  image?: string;
 }
 
-const { title, description, canonical } = Astro.props;
+const { title, description, canonical, image = '/og-image.png' } = Astro.props;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageUrl = new URL(image, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -27,6 +29,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toStri
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#09090b" />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <title>{title}</title>
@@ -38,11 +41,13 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toStri
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="SVGWire" />
+    <meta property="og:image" content={ogImageUrl} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Favicon: two variants so it responds to the app's own theme toggle -->
     <link id="favicon" rel="icon" type="image/svg+xml" href="/favicon-light.svg" />
@@ -97,6 +102,16 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toStri
           "url": "https://svgwire.com/",
           "applicationCategory": "DeveloperApplication",
           "operatingSystem": "Any",
+          "browserRequirements": "Requires JavaScript and a modern web browser with DOMParser support",
+          "featureList": [
+            "SVG to React JSX/TSX component conversion",
+            "SVG to Vue 3 Single File Component conversion",
+            "SVG to Svelte 5 runes component conversion",
+            "SVG to React Native react-native-svg conversion",
+            "Tailwind CSS preset with currentColor and responsive dimension stripping",
+            "Batch folder conversion with parallel browser processing and ZIP bundling",
+            "SVG sprite sheet compilation with type-safe TypeScript unions"
+          ],
           "offers": {
             "@type": "Offer",
             "price": "0",
