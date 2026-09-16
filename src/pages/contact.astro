@@ -1,0 +1,161 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contact Us — SVGWire"
+  description="Get in touch with SVGWire. Send feedback, report bugs, or request features at contact@svgwire.com."
+  canonical="https://svgwire.com/contact"
+>
+  <div class="mx-auto max-w-[860px] px-6 py-16 sm:py-20">
+    <!-- Header -->
+    <div class="mb-12 border-b border-hairline pb-8">
+      <div class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas-soft px-3 py-1 text-caption font-medium text-mute mb-4">
+        <span class="h-2 w-2 rounded-full bg-success"></span>
+        Get in Touch
+      </div>
+      <h1 class="text-display-md text-ink mb-3 font-semibold">
+        Contact SVGWire
+      </h1>
+      <p class="text-body-md text-mute max-w-xl">
+        Have questions, feedback, or suggestions? We'd love to hear from you. Reach out directly or open an issue on GitHub.
+      </p>
+    </div>
+
+    <!-- Main Contact Card -->
+    <div class="mb-12 rounded-xl border border-hairline bg-canvas p-6 sm:p-8 shadow-level-2">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div>
+          <span class="text-caption-mono text-mute uppercase tracking-wider block mb-1">
+            Direct Contact Email
+          </span>
+          <a
+            href="mailto:contact@svgwire.com"
+            class="text-display-sm text-ink hover:text-link transition-colors font-mono font-semibold underline decoration-hairline-strong underline-offset-4"
+            id="contact-email-link"
+          >
+            contact@svgwire.com
+          </a>
+          <p class="text-body-sm text-mute mt-2">
+            We aim to respond to all inquiries within 24–48 hours.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          id="copy-email-btn"
+          class="inline-flex items-center justify-center gap-2 rounded-lg border border-hairline bg-canvas-soft hover:bg-canvas-soft-2 px-4 py-2.5 text-button-md text-ink transition-all active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-hairline-strong"
+          aria-label="Copy email address to clipboard"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span id="copy-btn-text">Copy Address</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Contact Topics Grid -->
+    <div class="grid gap-6 sm:grid-cols-2 mb-12">
+      <!-- Card 1: Bug Reports -->
+      <div class="rounded-xl border border-hairline bg-canvas-soft p-6 flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 rounded-lg border border-hairline bg-canvas flex items-center justify-center mb-4 text-ink">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m8 2 1.88 1.88"></path>
+              <path d="M14.12 3.88 16 2"></path>
+              <path d="M9 7.13v-1a3.003 3.003 0 0 1 6 0v1"></path>
+              <path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6z"></path>
+              <path d="M12 20v-9"></path>
+              <path d="M6.53 9C4.6 9.8 3 11.6 3 14"></path>
+              <path d="M6 13H2"></path>
+              <path d="M3 21l3.5-3.5"></path>
+              <path d="M17.47 9c1.93.8 3.53 2.6 3.53 5"></path>
+              <path d="M18 13h4"></path>
+              <path d="M21 21l-3.5-3.5"></path>
+            </svg>
+          </div>
+          <h2 class="text-body-md-strong text-ink mb-1">Report a Bug</h2>
+          <p class="text-body-sm text-mute">
+            Found an issue with SVG conversion, component formatting, or sprite generation? Report it on GitHub for fast tracking.
+          </p>
+        </div>
+        <div class="mt-6">
+          <a
+            href="https://github.com/ayaz07-S/svgwire/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-body-sm font-medium text-ink hover:text-mute transition-colors underline decoration-hairline-strong underline-offset-4"
+          >
+            Open GitHub Issue &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Feature Requests -->
+      <div class="rounded-xl border border-hairline bg-canvas-soft p-6 flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 rounded-lg border border-hairline bg-canvas flex items-center justify-center mb-4 text-ink">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v8"></path>
+              <path d="m4.93 10.93 4.24 4.24"></path>
+              <path d="M2 18h8"></path>
+              <path d="M20 18h2"></path>
+              <path d="m19.07 10.93-4.24 4.24"></path>
+              <path d="M22 22 2 2"></path>
+            </svg>
+          </div>
+          <h2 class="text-body-md-strong text-ink mb-1">Feature Requests</h2>
+          <p class="text-body-sm text-mute">
+            Want support for another framework or export option? Email us or submit your feedback directly.
+          </p>
+        </div>
+        <div class="mt-6">
+          <a
+            href="mailto:contact@svgwire.com?subject=SVGWire%20Feature%20Request"
+            class="inline-flex items-center gap-1.5 text-body-sm font-medium text-ink hover:text-mute transition-colors underline decoration-hairline-strong underline-offset-4"
+          >
+            Send Feature Idea &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Privacy Note Callout -->
+    <div class="rounded-xl border border-hairline bg-canvas-soft p-6">
+      <h2 class="text-body-md-strong text-ink mb-2">Browser-Only Processing</h2>
+      <p class="text-body-md text-body leading-relaxed">
+        SVGWire runs entirely inside your web browser. Your SVG source files and generated code are processed locally and are never stored or logged on remote servers.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-4 text-body-sm">
+        <a href="/faq" class="text-ink underline hover:text-mute">Read FAQ</a>
+        <a href="/privacy" class="text-ink underline hover:text-mute">Privacy Policy</a>
+        <a href="/terms" class="text-ink underline hover:text-mute">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const copyBtn = document.getElementById('copy-email-btn');
+    const btnText = document.getElementById('copy-btn-text');
+
+    if (copyBtn && btnText) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('contact@svgwire.com');
+          const originalText = btnText.textContent;
+          btnText.textContent = 'Copied!';
+          copyBtn.classList.add('border-success', 'text-success');
+          
+          setTimeout(() => {
+            btnText.textContent = originalText;
+            copyBtn.classList.remove('border-success', 'text-success');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy email:', err);
+        }
+      });
+    }
+  </script>
+</BaseLayout>

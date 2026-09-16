@@ -11,6 +11,10 @@
   --radius-*: initial;
   --shadow-*: initial;
 
+  /* ─── Colors: Base ─── */
+  --color-black: #000000;
+  --color-white: #ffffff;
+
   /* ─── Colors: Brand & Surface ─── */
   --color-ink: #171717;
   --color-body: #4d4d4d;

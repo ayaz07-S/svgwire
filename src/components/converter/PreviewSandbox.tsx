@@ -45,13 +45,13 @@ function CheckerIcon() {
 
 const BG_CLASSES: Record<PreviewBg, string> = {
   light:   'bg-[#ffffff]',
-  dark:    'bg-black',
+  dark:    'bg-[#000000]',
   checker: 'bg-preview-checker',
 };
 
 const BG_BORDER: Record<PreviewBg, string> = {
   light:   'border-hairline',
-  dark:    'border-zinc-800',
+  dark:    'border-hairline-strong dark:border-[#262626]',
   checker: 'border-hairline',
 };
 
@@ -78,8 +78,8 @@ function BgOption({ id, label, icon, active, onClick }: BgOptionProps) {
         'relative flex items-center justify-center w-6 h-6 rounded transition-all duration-150',
         'focus:outline-none focus-visible:ring-1 focus-visible:ring-hairline-strong focus-visible:ring-offset-1',
         active
-          ? 'bg-canvas-soft-2 dark:bg-zinc-800 shadow-level-2 ring-1 ring-hairline text-ink scale-[1.05] z-10'
-          : 'text-mute hover:text-body hover:bg-canvas-soft-2/60 dark:hover:bg-zinc-800/50',
+          ? 'bg-canvas-soft-2 dark:bg-canvas-soft-2 shadow-level-2 ring-1 ring-hairline text-ink scale-[1.05] z-10'
+          : 'text-mute hover:text-body hover:bg-canvas-soft-2/60 dark:hover:bg-canvas-soft-2/50',
       ].join(' ')}
     >
       {icon}
@@ -131,13 +131,13 @@ export function PreviewSandbox({ svgContent, isValid }: PreviewSandboxProps) {
       // On dark background: make dark-colored elements white so they are visible.
       // 1. Replace hardcoded dark colors in fill/stroke SVG attributes
       result = result.replace(
-        /((?:fill|stroke)\s*=\s*")(#171717|#000000|#000|black)(")/gi,
+        /((?:fill|stroke)\s*=\s*")(#171717|#18181b|#0f0f0f|#0a0a0a|#000000|#000|black)(")/gi,
         `$1${previewColor}$3`
       );
       // 2. Replace dark colors in CSS property values inside style="..." attributes.
       //    Matches fill/stroke CSS properties preceded by a quote, semicolon, or whitespace.
       result = result.replace(
-        /(?<=["';\s])((?:fill|stroke)\s*:\s*)(#171717|#000000|#000|black)/gi,
+        /(?<=["';\s])((?:fill|stroke)\s*:\s*)(#171717|#18181b|#0f0f0f|#0a0a0a|#000000|#000|black)/gi,
         `$1${previewColor}`
       );
     } else {
@@ -187,11 +187,11 @@ export function PreviewSandbox({ svgContent, isValid }: PreviewSandboxProps) {
 
   return (
     <div
-      className="rounded-xl border border-hairline bg-canvas dark:bg-zinc-900 overflow-hidden transition-colors duration-200"
+      className="rounded-xl border border-hairline bg-canvas dark:bg-canvas-soft overflow-hidden transition-colors duration-200"
       id="preview-sandbox"
     >
       {/* ── Header ── */}
-      <div className="flex items-center justify-between border-b border-hairline px-3 py-2 dark:bg-zinc-800">
+      <div className="flex items-center justify-between border-b border-hairline px-3 py-2 dark:bg-canvas-soft-2">
 
         {/* Left: status + label */}
         <div className="flex items-center gap-2">
@@ -201,7 +201,7 @@ export function PreviewSandbox({ svgContent, isValid }: PreviewSandboxProps) {
 
         {/* Right: background selector — compact segmented icon control */}
         <div
-          className="flex items-center gap-0.5 rounded-md border border-hairline bg-canvas-soft dark:bg-zinc-900 px-1 py-0.5"
+          className="flex items-center gap-0.5 rounded-md border border-hairline bg-canvas-soft dark:bg-canvas px-1 py-0.5"
           role="group"
           aria-label="Preview background"
         >
