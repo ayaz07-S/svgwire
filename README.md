@@ -1,34 +1,130 @@
 # SVGWire
 
-A blazing fast, 100% client-side SVG to Framework Component converter. Convert raw SVGs into production-ready React, Vue, Svelte, and React Native components entirely within your browser.
+Turn SVG assets into production-ready React, Vue, Svelte, React Native, and Tailwind code.
 
-## 🚀 Features
+Live Demo → [https://svgwire.com](https://svgwire.com)
 
-- **Multi-Framework Support**: Instantly generate clean components for React, Vue, Svelte, and React Native.
-- **Zero Backend**: All processing is done locally in your browser using DOM APIs and `JSZip`. No files are ever uploaded.
-- **Deterministic ID Scrambling**: Solves the notorious SVG internal ID collision bug. Automatically detects elements like `<linearGradient>`, `<clipPath>`, and `<mask>`, renaming their IDs and references (`url(#...)`) using a hash derived from the file name and content. Ensures visually perfect rendering when multiple icons share a page.
-- **Coordinate Precision Truncation**: Includes a robust, custom path tokenizer that rounds coordinate values (`d`, `points`, `viewBox`, `cx`, etc.) to a configurable decimal precision (1-6). Features deep arc (`A/a`) flag preservation to ensure valid syntax. Drastically reduces file sizes by stripping unnecessary precision.
-- **Live Output Metrics**: Compare raw SVG bytes against parsed/cleaned output sizes in real-time as you drag the precision slider.
-- **Batch Folder Processing**: Drag and drop an entire folder of SVGs. The engine processes everything concurrently and downloads a single `.zip` file while preserving nested directory structures.
-- **Sprite Mode**: Compiles dozens of SVGs into a single optimized `<svg>` sprite. Automatically extracts root presentation attributes, strips dropped root folders, and generates:
-  - `sprite.svg` containing all `<symbol>` definitions.
-  - A strict TypeScript union file (`icon-names.ts`) of all valid icon names.
-  - A framework-specific `<Icon>` wrapper component that consumes the sprite using `<use href="/sprite.svg#icon-name" />`.
+## What SVGWire Does
 
-## 🧞 Development Commands
+SVG exports can require cleanup, framework-specific attribute conversion, styling adjustments, and repetitive manual work before they are ready for frontend projects. SVGWire provides a browser-based workflow for converting and preparing these assets.
 
-All commands are run from the root of the project from a terminal:
+## Features
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run test`            | Runs the local Node.js test suite                |
-| `npm run preview`         | Preview your build locally, before deploying     |
+### Framework Conversion
+- React
+- Vue 3
+- Svelte 5
+- React Native
+- Tailwind React
 
-## 🛠 Tech Stack
-- **Framework**: Astro (for fast static routing and HTML shells)
-- **UI Components**: React (Interactive client-side Islands)
-- **Styling**: Tailwind CSS
-- **Testing**: Node.js Native Test Runner (`node:test`)
+### Asset Workflows
+- Single SVG conversion
+- Batch folder conversion (recursive processing supported)
+- SVG sprite generation
+
+### Output & Utilities
+- TypeScript support
+- currentColor support
+- Remove width/height dimensions
+- Live SVG preview
+- Code output with copy/download
+- ZIP output
+- `sprite.svg` generation
+- `icon-names.ts` generation
+- Framework-specific sprite wrapper generation
+- Tailwind Data URI output
+- Tailwind CSS Mask output
+- Light/Dark mode
+- Responsive UI
+- SEO framework pages
+
+## Privacy & Architecture
+
+SVG conversion is performed client-side in your browser, so SVG source content does not need to be uploaded to an SVGWire server. No account is required for the core converter.
+
+## Tech Stack
+
+SVGWire is built with:
+- Astro
+- React Islands
+- TypeScript
+- Tailwind CSS v4
+- Cloudflare Workers / Static Assets
+
+## How It Works
+
+1. Paste or upload an SVG.
+2. Select the target framework/output.
+3. Configure options.
+4. Preview the result.
+5. Copy or download the generated code.
+
+**Batch Mode**: Drag and drop an entire folder of SVGs. The application recursively processes all files and generates a single `.zip` file with converted components.
+**Sprite Mode**: Process multiple SVGs into a single `sprite.svg`, complete with a TypeScript union file (`icon-names.ts`) and a framework-specific `<Icon>` wrapper.
+
+## Local Development
+
+Commands for developing locally:
+
+| Command           | Action                                        |
+| ----------------- | --------------------------------------------- |
+| `npm install`     | Installs dependencies                         |
+| `npm run dev`     | Starts the development server                 |
+| `npm run build`   | Builds the production static site             |
+| `npm run preview` | Previews the production build locally         |
+| `npm run test`    | Runs the local Node.js test suite             |
+| `npm run deploy`  | Builds and deploys to Cloudflare Workers      |
+
+## Project Structure
+
+```text
+src/
+  components/  # React components (Interactive islands) and Astro components
+  layouts/     # Base layouts
+  lib/         # Conversion engine, parsing logic, and templates
+  pages/       # Astro pages (Framework routes, Batch, Sprite, FAQ)
+  styles/      # Global CSS and Tailwind directives
+```
+
+## Testing
+
+Tests run via the native Node.js test runner (`node:test`). The test suite covers the parsing engine behavior, ID scrambling, coordinate truncation, and framework conversion outputs.
+
+## Deployment
+
+SVGWire is deployed using Cloudflare Workers. Static assets are served from the Cloudflare edge, while the converter logic remains entirely in the browser. 
+Production domain: https://svgwire.com
+
+## Roadmap
+
+The following features are **planned** or represent future directions for the project:
+
+- Shared conversion core package
+- SVGWire CLI
+- Project configuration
+- Watch mode
+- SVG validation/checking
+- GitHub Action / CI integration
+- Figma integration
+- VS Code integration
+
+## Contributing
+
+1. Fork and clone the repository.
+2. Run `npm install` to install dependencies.
+3. Start the dev server with `npm run dev`.
+4. Make your changes and ensure `npm run test` passes.
+5. Submit a pull request.
+
+*(Note: No license information is currently specified in the repository.)*
+
+## Related Links
+
+- [Home](https://svgwire.com/)
+- [SVG to React](https://svgwire.com/svg-to-react)
+- [SVG to Vue 3](https://svgwire.com/svg-to-vue)
+- [SVG to Svelte 5](https://svgwire.com/svg-to-svelte)
+- [SVG to React Native](https://svgwire.com/svg-to-react-native)
+- [SVG to Tailwind React](https://svgwire.com/svg-to-tailwind-react)
+- [Batch Mode](https://svgwire.com/batch)
+- [Sprite Mode](https://svgwire.com/sprite)
